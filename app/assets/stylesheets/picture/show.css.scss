@@ -1,0 +1,20 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@mixin improveAntiAlias() {
+	//Improve aliasing on mobile/tablet devices
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+#photo-title{
+  font-size: 70px;
+  padding-bottom: 10px;
+}
+
+#photo{
+  width: 100%;
+}
+
+hr{
+  width: 75%;
+}

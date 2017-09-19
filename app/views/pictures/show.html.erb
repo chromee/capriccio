@@ -1,11 +1,12 @@
-<div class="center">
-  <h1 class="title">
+<div class="col-md-8 col-md-offset-2" style="text-align: center;">
+  <h1 id="photo-title">
+    <%= @picture.id %>
     <%= @picture.name %>
   </h1>
 
   <div class="tag-list">
     <ul class="list-inline">
-      <span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon" style="<%= @picture.tag_list.present? ? 'top: 10px;' : 'top: 3px;' %>"></span>
+      <li><span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon"></span></li>
       <% @picture.tag_list.each do |tag| %>
         <li>
           <span class="label label-primary">
@@ -16,12 +17,11 @@
     </ul>
   </div>
 
-
   <div class="show_img">
-    <%= link_to image_tag(@picture.photo.url(:large)) , @picture.photo.url(:original), target: ["_blank"] %>
+    <%= link_to image_tag(@picture.photo.url(:large), id: "photo") , @picture.photo.url(:original), target: ["_blank"] %>
   </div>
-
-  <h3>
+<hr>
+  <h3 style="text-align: right;">
     <ul class="list-inline">
       <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary btn-lg" %></li>
       <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-lg" %></li>
