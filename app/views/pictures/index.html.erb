@@ -1,0 +1,12 @@
+<div class="col-md-10 col-md-offset-1 photo-list">
+  <ul class="photo-list">
+    <% float = "right" %>
+    <% @pictures.each.with_index(1) do |picture, i| %>
+      <% float = float == "left" ? "right" : "left" if i % 5 == 1 %>
+      <% width = i % 5 == 1 ? 50 : 25 %>
+      <li>
+        <%= link_to image_tag(picture.photo.url(:large), class: "photo", style: "width:#{width}%; float:#{float};"), picture_path(picture) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

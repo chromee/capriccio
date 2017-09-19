@@ -1,0 +1,16 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "あにきゃぷ", pictures_path, id: "logo" %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Upload", new_picture_path %></li>
+        <li>
+          <%= form_tag pictures_path, method: :get, class: "form-inline navbar-form", style: "margin-top:10px; padding-right: 0;" do %>
+            <div class="form-group">
+              <%= text_field_tag :search, "", class: "form-control", placeholder: "タグで検索" %>
+            </div>
+          <%= submit_tag "検索", class: "btn btn-default" %>
+          <% end %>
+        </li>
+      </ul>
+  </div>
+</header>

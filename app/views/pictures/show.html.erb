@@ -1,0 +1,30 @@
+<div class="center">
+  <h1 class="title">
+    <%= @picture.name %>
+  </h1>
+
+  <div class="tag-list">
+    <ul class="list-inline">
+      <span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon" style="<%= @picture.tag_list.present? ? 'top: 10px;' : 'top: 3px;' %>"></span>
+      <% @picture.tag_list.each do |tag| %>
+        <li>
+          <span class="label label-primary">
+            <%= link_to tag, pictures_path(search: tag), class: "tag" %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+  <div class="show_img">
+    <%= link_to image_tag(@picture.photo.url(:large)) , @picture.photo.url(:original), target: ["_blank"] %>
+  </div>
+
+  <h3>
+    <ul class="list-inline">
+      <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary btn-lg" %></li>
+      <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-lg" %></li>
+    </ul>
+  </h3>
+</div>

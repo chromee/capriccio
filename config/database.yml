@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  port: 3306
+  pool: 5
+  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] %>
+  
+development:
+  <<: *default
+  database: anicap_development
+
+test:
+  <<: *default
+  database: anicap_test
+
+production:
+  <<: *default
+  database: anicap_production

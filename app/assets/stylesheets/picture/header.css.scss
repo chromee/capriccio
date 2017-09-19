@@ -1,0 +1,25 @@
+
+header{
+  .container{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+    background-color: #222222;
+    height:55px;
+  }
+}
+
+#logo {
+  float: left;
+  font-size: 2em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 7px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
