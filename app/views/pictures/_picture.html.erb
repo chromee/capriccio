@@ -1,5 +1,21 @@
 <% float = picture_counter % 10 < 5 ? "left" : "right" %>
-<% width = picture_counter % 5 == 0 ? 50 : 25 %>
+<% css_class = picture_counter % 5 == 0 ? "large-picture" : "small-picture" %>
 <li>
-  <%= link_to image_tag(picture.photo.url(:large), class: "picture", style: "width:#{width}%; float:#{float};"), picture_path(picture) %>
+  <%= link_to image_tag(picture.photo.url(:large), class: "picutre #{css_class}", style: "float:#{float};"), picture_path(picture) %>
 </li>
+
+<script>
+  $(function() {
+    var css_class = '.<%= css_class %>';
+    ResizeImg(css_class);
+    $(window).resize(function(){
+      ResizeImg(css_class);
+    });
+  });
+
+  function ResizeImg(cc){
+    var width = $(cc).width();
+    $(cc).height(width * 9 / 16.0);
+  }
+
+</script>

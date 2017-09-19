@@ -2,13 +2,13 @@ $defaultDuration: .3s;
 
 #pictures{
   padding-bottom: 100px;
-  
+
   ul{
     list-style-type: none;
   	padding-left: 0;
   }
 
-  .picture{
+  .picutre{
     transition-duration: $defaultDuration;
     z-index: 1;
     position: relative;
@@ -17,5 +17,13 @@ $defaultDuration: .3s;
         transform: scale(1.05);
         z-index: 10;
     }
+  }
+
+  .small-picture{
+    width: 25%;
+  }
+
+  .large-picture{
+    width: 50%;
   }
 }
