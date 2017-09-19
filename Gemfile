@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.5'
 
 # JS系
 gem 'coffee-rails', '~> 4.2'
+gem 'coffee-script-source', '1.8.0'
 gem 'jquery-rails'
 gem "jquery-turbolinks"
 
