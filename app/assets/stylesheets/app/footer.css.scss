@@ -1,17 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-html, body{
-  height: 100%;
-}
-
-#warp{
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  padding-top: 120px;
-}
-
 footer {
   height: 80px;
   margin-top: 40px;
