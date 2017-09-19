@@ -17,5 +17,4 @@
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
 //= require jquery.turbolinks
-//= require jquery.infinitescroll
 //= require_tree .
