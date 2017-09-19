@@ -1,7 +1,8 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery except: [:create]
 
-  PER_PAGE = 24
+  PER_PAGE = 20
 
   def index
     if params[:search].present?
@@ -28,10 +29,10 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
+        format.html { redirect_to @picture, notice: '画像がアップロードされまし' }
         format.json { render :show, status: :created, location: @picture }
       else
-        format.html { render :new }
+        format.html { render :new, notice: "画像のアップロードに失敗しました" }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
