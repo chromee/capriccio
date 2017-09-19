@@ -10,9 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
+//= require jquery.turbolinks
+//= require jquery.infinitescroll
 //= require_tree .
