@@ -10,3 +10,17 @@
 <div style="display: none;">
   <%= paginate @pictures %>
 </div>
+
+<script>
+$(function(){
+  $("#pictures .page").infinitescroll({
+    loading: {
+      img:     "<%= image_url "loading.gif" %>",
+      msgText: ""
+    },
+    navSelector: "nav.pagination",
+    nextSelector: "nav.pagination a[rel=next]",
+    itemSelector: "#pictures li"
+  });
+});
+</script>

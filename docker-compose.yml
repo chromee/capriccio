@@ -13,6 +13,8 @@ services:
       - .:/usr/src/anicap
     links:
       - database:mysql
+    tty: true
+    stdin_open: true
   database:
     image: mysql:5.7.10
     environment:

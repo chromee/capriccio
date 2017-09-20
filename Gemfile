@@ -21,10 +21,11 @@ gem "jquery-turbolinks"
 # css系
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
-gem 'acts-as-taggable-on'
-gem 'bootstrap-tagsinput-rails'
+gem 'bootstrap_tagsinput_rails'
 gem 'twitter-bootstrap-rails'
 
+# rails系
+gem 'acts-as-taggable-on'
 gem 'paperclip'
 gem 'kaminari', '~> 0.17.0'
 
