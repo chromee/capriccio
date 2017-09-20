@@ -27,3 +27,10 @@ $defaultDuration: .3s;
     width: 50%;
   }
 }
+
+#infscr-loading{
+  img{
+    transition-duration: $defaultDuration;
+    padding-top: 50px;
+  }
+}
