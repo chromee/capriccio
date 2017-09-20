@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   protect_from_forgery except: [:create]
 
-  PER_PAGE = 20
+  PER_PAGE = 30
 
   def index
     if params[:search].present?
