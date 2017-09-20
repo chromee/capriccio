@@ -1,13 +1,14 @@
 version: '2'
 services:
   app:
+    container_name: anicap2
     build: .
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:pass@mysql:3306
-      MYSQL_ROOT_PASSWORD: 'pass'
-    ports:
-      - '3000:3000'
+      MYSQL_ROOT_PASSWORD: 'pass'   
+    expose:
+      - "21132"
     volumes:
       - .:/usr/src/anicap
     links:
@@ -17,9 +18,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
     ports:
-      - '3306:3306'
+      - '24557:3306'
     volumes:
       - mysql-data:/var/lib/mysql
+
 volumes:
   mysql-data:
     driver: local
+
+networks:
+  default:
+    external:
+      name: sushi
