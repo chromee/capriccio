@@ -1,28 +1,21 @@
 class AnimesController < ApplicationController
   before_action :set_anime, only: [:show, :edit, :update, :destroy]
+  before_action :set_studios, only: [:new, :edit, :create, :update]
 
-  # GET /animes
-  # GET /animes.json
   def index
     @animes = Anime.all
   end
 
-  # GET /animes/1
-  # GET /animes/1.json
   def show
   end
 
-  # GET /animes/new
   def new
     @anime = Anime.new
   end
 
-  # GET /animes/1/edit
   def edit
   end
 
-  # POST /animes
-  # POST /animes.json
   def create
     @anime = Anime.new(anime_params)
 
@@ -37,8 +30,6 @@ class AnimesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /animes/1
-  # PATCH/PUT /animes/1.json
   def update
     respond_to do |format|
       if @anime.update(anime_params)
@@ -51,8 +42,6 @@ class AnimesController < ApplicationController
     end
   end
 
-  # DELETE /animes/1
-  # DELETE /animes/1.json
   def destroy
     @anime.destroy
     respond_to do |format|
@@ -62,13 +51,15 @@ class AnimesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_anime
       @anime = Anime.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def anime_params
       params.require(:anime).permit(:title, :year, :season_id, :studio_id)
+    end
+
+    def set_studios
+      @studios = Studio.all.order(:name)
     end
 end
