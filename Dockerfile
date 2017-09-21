@@ -1,8 +1,7 @@
 FROM ruby:2.3.1
 
-ENV APP_ROOT /usr/src/app
-ENV DOCKERIZE_VERSION v0.3.0
-ENV ENTRYKIT_VERSION 0.4.0
+ENV APP_ROOT /usr/src/anicap
+WORKDIR $APP_ROOT
 
 RUN apt-get update && \
     apt-get install -y nodejs \
@@ -12,25 +11,19 @@ RUN apt-get update && \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-RUN bundle config --global build.nokogiri --use-system-libraries \
-        # dockerize
-        && wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-        && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-        && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-        # entrykit
-        && wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
-        && tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
-        && rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
-        && mv entrykit /bin/entrykit \
-        && chmod +x /bin/entrykit \
-        && entrykit --symlink
+COPY Gemfile $APP_ROOT
+COPY Gemfile.lock $APP_ROOT
 
-WORKDIR $APP_ROOT
+RUN \
+  echo 'gem: --no-document' >> ~/.gemrc && \
+  cp ~/.gemrc /etc/gemrc && \
+  chmod uog+r /etc/gemrc && \
+  bundle config --global build.nokogiri --use-system-libraries && \
+  bundle config --global jobs 4 && \
+  bundle install && \
+  rm -rf ~/.gem
 
-ENTRYPOINT [ \
-  "prehook", "bundle install -j3", "--", \
-  "prehook", "dockerize -timeout 60s -wait tcp://database:3306", "--" \
-]
+  COPY . $APP_ROOT
 
-EXPOSE  3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+  EXPOSE  3000
+  CMD ["rails", "server", "-b", "0.0.0.0"]
