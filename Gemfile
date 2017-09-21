@@ -28,6 +28,7 @@ gem 'twitter-bootstrap-rails'
 gem 'acts-as-taggable-on'
 gem 'paperclip'
 gem 'kaminari', '~> 0.17.0'
+gem 'ehon'
 
 group :development, :test do
   gem 'byebug', platform: :mri
