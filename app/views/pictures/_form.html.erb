@@ -35,51 +35,55 @@
   });
 </script>
 
-<%= form_for @picture, class: "form-horizontal panel" do |f| %>
-  <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@picture.errors.count, "error") %>prohibited this picture from being saved:</h2>
-      <ul>
-      <% @picture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div style="text-align:center;">
+
+  <%= form_for @picture, class: "form-horizontal panel" do |f| %>
+    <% if @picture.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@picture.errors.count, "error") %>prohibited this picture from being saved:</h2>
+        <ul>
+        <% @picture.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <%= f.label :name, "タイトル", class: "col-sm-2 col-sm-offset-1" %>
+      <div class="col-sm-6"><%= f.text_field :name, class: "form-control" %></div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :tag_list, "タグ(カンマ区切り)", class: "col-sm-2 col-sm-offset-1" %>
+      <div class="col-sm-6">
+        <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
+      </div>
+      <script>
+        $(function() {
+          $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+        });
+      </script>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :photo, "画像", class: "col-sm-2 col-sm-offset-1" %>
+      <div class="col-sm-6">
+        <%= f.file_field :photo, id: "photo", style: "display:none" %>
+        <div class="input-group">
+          <input type="text" id="photoCoverTextField" class="form-control" placeholder="select file...">
+          <span class="input-group-btn"><button type="button" class="btn btn-info" id="browser-btn">Browse</button></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="center cap_image"><%= @picture.photo.present? ? image_tag(@picture.photo.url(:large)) : "no Image" %></div>
+    </div>
+
+    <div class="center">
+      <%= f.submit "保存", class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <div class="form-group row">
-    <%= f.label :name, "タイトル", class: "col-sm-2 col-sm-offset-1" %>
-    <div class="col-sm-6"><%= f.text_field :name, class: "form-control" %></div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :tag_list, "タグ(カンマ区切り)", class: "col-sm-2 col-sm-offset-1" %>
-    <div class="col-sm-6">
-      <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
-    </div>
-    <script>
-      $(function() {
-        $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
-      });
-    </script>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :photo, "画像", class: "col-sm-2 col-sm-offset-1" %>
-    <div class="col-sm-6">
-      <%= f.file_field :photo, id: "photo", style: "display:none" %>
-      <div class="input-group">
-        <input type="text" id="photoCoverTextField" class="form-control" placeholder="select file...">
-        <span class="input-group-btn"><button type="button" class="btn btn-info" id="browser-btn">Browse</button></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="center cap_image"><%= @picture.photo.present? ? image_tag(@picture.photo.url(:large)) : "no Image" %></div>
-  </div>
-
-  <div class="center">
-    <%= f.submit "保存", class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>
