@@ -35,7 +35,6 @@
   });
 </script>
 
-<div style="text-align:center;">
 
   <%= form_for @picture, class: "form-horizontal panel" do |f| %>
     <% if @picture.errors.any? %>
@@ -85,5 +84,3 @@
       <%= f.submit "保存", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-</div>
