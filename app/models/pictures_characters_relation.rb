@@ -1,0 +1,2 @@
+class PicturesCharactersRelation < ApplicationRecord
+end
