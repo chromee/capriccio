@@ -21,7 +21,7 @@ gem "jquery-turbolinks"
 # css系
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
-gem 'bootstrap-tagsinput-rails'
+gem 'bootstrap_tagsinput_rails'
 gem 'twitter-bootstrap-rails'
 
 # rails系

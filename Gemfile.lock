@@ -47,8 +47,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap-tagsinput-rails (0.4.2.1)
-      railties (>= 3.1)
+    bootstrap_tagsinput_rails (0.4.0)
     builder (3.2.3)
     byebug (9.1.0)
     climate_control (0.2.0)
@@ -221,7 +220,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bootstrap-sass
-  bootstrap-tagsinput-rails
+  bootstrap_tagsinput_rails
   byebug
   coffee-rails (~> 4.2)
   coffee-script-source (= 1.8.0)
