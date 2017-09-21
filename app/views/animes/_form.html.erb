@@ -1,0 +1,37 @@
+<%= form_for(anime) do |f| %>
+  <% if anime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
+
+      <ul>
+      <% anime.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :year %>
+    <%= f.number_field :year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :season_id %>
+    <%= f.number_field :season_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :studio_id %>
+    <%= f.number_field :studio_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
