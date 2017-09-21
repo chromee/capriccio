@@ -12,29 +12,29 @@
   <% end %>
 
   <div class="form-group row">
-    <%= f.label :title, class: "col-sm-2 col-sm-offset-1"  %>
-    <div class="col-sm-6">
+    <%= f.label :title, class: "col-md-2 col-md-offset-1"  %>
+    <div class="col-md-6">
       <%= f.text_field :title, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :year, class: "col-sm-2 col-sm-offset-1"  %>
-    <div class="col-sm-6">
+    <%= f.label :year, class: "col-md-2 col-md-offset-1"  %>
+    <div class="col-md-6">
       <%= f.number_field :year, value: Time.now.year, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :season_id, class: "col-sm-2 col-sm-offset-1"  %>
-    <div class="col-sm-6">
+    <%= f.label :season_id, class: "col-md-2 col-md-offset-1"  %>
+    <div class="col-md-6">
       <%= f.select :season_id, Season.all.map{|s| [s.name, s.id] }, {}, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :studio_id, class: "col-sm-2 col-sm-offset-1" %>
-    <div class="col-sm-6">
+    <%= f.label :studio_id, class: "col-md-2 col-md-offset-1" %>
+    <div class="col-md-6">
       <%= f.select :studio_id, @studios.map{|s| [s.name, s.id]}, {}, class: "form-control" %>
     </div>
   </div>
