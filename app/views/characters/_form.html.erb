@@ -1,4 +1,4 @@
-<%= form_for(character) do |f| %>
+<%= form_for character, class: "form-horizontal panel" do |f| %>
   <% if character.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="form-group row">
+    <%= f.label :name, class: "col-sm-2 col-sm-offset-1" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :anime_id %>
-    <%= f.number_field :anime_id %>
+  <div class="form-group row">
+    <%= f.label :anime_id, class: "col-sm-2 col-sm-offset-1" %>
+    <div class="col-sm-6">
+      <%= f.select :anime_id, @animes.map{|s| [s.title, s.id]}, {}, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.submit "保存", class: "btn btn-primary" %>
   </div>
 <% end %>
