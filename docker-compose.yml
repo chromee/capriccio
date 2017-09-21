@@ -1,5 +1,21 @@
 version: '2'
 services:
+
+  datastore:
+    image: busybox
+    volumes:
+      - mysql:/var/lib/mysql
+      - bundle_install:/usr/local/bundle
+
+  database:
+    image: mysql:5.7.10
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pass'
+    volumes_from:
+      - datastore
+    ports:
+      - '3306:3306'
+
   app:
     build: .
     environment:
@@ -8,20 +24,19 @@ services:
       MYSQL_ROOT_PASSWORD: 'pass'
     ports:
       - '3000:3000'
+    depends_on:
+      - database
+    volumes_from:
+      - datastore
     volumes:
-      - .:/usr/src/anicap
+      - .:/usr/src/app
     links:
       - database:mysql
     tty: true
     stdin_open: true
-  database:
-    image: mysql:5.7.10
-    environment:
-      MYSQL_ROOT_PASSWORD: 'pass'
-    ports:
-      - '3306:3306'
-    volumes:
-      - mysql-data:/var/lib/mysql
+
 volumes:
-  mysql-data:
+  mysql:
+    driver: local
+  bundle_install:
     driver: local
