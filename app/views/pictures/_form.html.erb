@@ -33,6 +33,11 @@
 
     reader.readAsDataURL(file);
   });
+
+
+  $(function() {
+    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+  });
 </script>
 
 
@@ -58,11 +63,6 @@
       <div class="col-sm-6">
         <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
       </div>
-      <script>
-        $(function() {
-          $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
-        });
-      </script>
     </div>
 
     <div class="form-group row">
