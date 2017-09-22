@@ -1,12 +1,19 @@
-<div class="col-md-8 col-md-offset-2" style="text-align: center;">
+<div class="col-md-6 col-md-offset-3" style="text-align: center;">
   <h1 id="photo-title">
     開発中確認用ID：<%= @picture.id %>
     <%= @picture.name %>
   </h1>
 
+  <ul class="list-inline" style="text-align: right;">
+    <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary" %></li>
+    <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></li>
+  </ul>
+
   <div class="tag-list">
     <ul class="list-inline">
-      <li><span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon"></span></li>
+      <li>
+        <span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon"></span>
+      </li>
       <% @picture.tag_list.each do |tag| %>
         <li>
           <span class="label label-primary">
@@ -20,11 +27,20 @@
   <div class="show_img">
     <%= link_to image_tag(@picture.photo.url(:large), id: "photo") , @picture.photo.url(:original), target: ["_blank"] %>
   </div>
-<hr>
-  <h3 style="text-align: right;">
-    <ul class="list-inline">
-      <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary btn-lg" %></li>
-      <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-lg" %></li>
-    </ul>
-  </h3>
+
+  <hr>
+
+  <table class="table table-striped">
+    <tr>
+      <td>アニメタイトル</td>
+      <td><%= @anime.try(:title) %></td>
+    </tr>
+    <tr>
+      <td>登場キャラ</td>
+      <td></td>
+    </tr>
+  </table>
+
+
+
 </div>
