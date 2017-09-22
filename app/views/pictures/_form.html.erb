@@ -18,9 +18,21 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :anime_id, "アニメ", class: "col-md-2 col-md-offset-1" %>
     <div class="col-md-6">
-      <%= f.select :anime_id, @animes.map{|a| [a.title, a.id]}, {include_blank: "未設定"}, class: "form-control" %>
+      <%= f.label :anime_id, "アニメ", class: "col-md-4 col-md-offset-2" %>
+      <div class="col-md-6">
+        <%= f.select :anime_id, @animes.map{|a| [a.title, a.id]}, {include_blank: "未設定"}, class: "form-control", id: "anime-select-box" %>
+      </div>
+    </div>
+    <div class="col-md-6" style="text-align: right;">
+      <%= label_tag :year, "年", class: "col-md-1" %>
+      <div class="col-md-2">
+        <%= select_tag :year, options_for_select(years_for_select), class: "form-control", id: "year-select-box" %>
+      </div>
+      <%= label_tag :season_id, "季節", class: "col-md-1" %>
+      <div class="col-md-2">
+        <%= select_tag :season_id, options_for_select(Season.all.map{|s| [s.name, s.id] }), class: "form-control", id: "season-select-box" %>
+      </div>
     </div>
   </div>
 
