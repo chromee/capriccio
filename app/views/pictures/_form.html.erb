@@ -70,6 +70,14 @@
   </div>
 <% end %>
 
+<!-- タグ入力処理 -->
+<script>
+  $(function() {
+    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+  });
+</script>
+
+<!-- 画像読み込み処理 -->
 <script>
   $("#photo").change(function() {
     $('#photoCoverTextField').val($(this).val());
@@ -104,10 +112,5 @@
     })(file);
 
     reader.readAsDataURL(file);
-  });
-
-
-  $(function() {
-    $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
   });
 </script>
