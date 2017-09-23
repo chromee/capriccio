@@ -2,14 +2,13 @@ class Picture < ApplicationRecord
   attr_accessor :content_type, :original_filename, :image_data
   before_save :decode_base64_image
 
-  paperclip_opts = {styles: { large:"1000x1000", medium: "300x300>" } ,
-                    url: "/assets/arts/:id/:style/:basename.:extension",
-                    path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension"}
-
+  paperclip_opts = {
+    styles: { large:"1000x1000", medium: "300x300>" } ,
+    url: "/assets/arts/:id/:style/:basename.:extension",
+    path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension"}
   has_attached_file :photo, paperclip_opts
-
   validates_attachment :photo,
-    less_than: 5.megabytes,
+    less_than: 20.megabytes,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   acts_as_taggable_on :tags
