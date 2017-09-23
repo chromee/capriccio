@@ -33,11 +33,12 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.save
         flash[:info] = "画像がアップロードされました"
-        save_pictures_characters_relation(params[:character_ids].split(",")) if params[:character_ids].present?
+        save_pictures_characters_relation if params[:character_names].present?
         format.html { redirect_to @picture }
         format.json { render :show, status: :created, location: @picture }
       else
-        format.html { render :new, notice: "画像のアップロードに失敗しました" }
+        flash[:danger] = "画像のアップロードに失敗しました"
+        format.html { render :new  }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
@@ -47,10 +48,11 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.update(picture_params)
         flash[:info] = "画像が更新されました"
-        save_pictures_characters_relation(params[:character_ids]) if params[:character_ids].present?
+        save_pictures_characters_relation if params[:character_names].present?
         format.html { redirect_to @picture }
         format.json { render :show, status: :ok, location: @picture }
       else
+        flash[:danger] = "画像の更新に失敗しました"
         format.html { render :edit }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
@@ -60,7 +62,8 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+      flash[:danger] = "画像が削除されました"
+      format.html { redirect_to pictures_url }
       format.json { head :no_content }
     end
   end
@@ -97,7 +100,8 @@ class PicturesController < ApplicationController
       end
     end
 
-    def save_pictures_characters_relation(character_ids)
+    def save_pictures_characters_relation
+      character_ids = character_ids.split(",")
       character_ids.each do |character_id|
         PicturesCharactersRelation.create(picture_id: @picture.id, character_id: character_id.to_i)
       end
