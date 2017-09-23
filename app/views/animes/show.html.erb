@@ -1,24 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 col-md-offset-2">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @anime.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @anime.title %>
+  </p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @anime.year %>
-</p>
+  <p>
+    <strong>Year:</strong>
+    <%= @anime.year %>
+  </p>
 
-<p>
-  <strong>Season:</strong>
-  <%= @anime.season_id %>
-</p>
+  <p>
+    <strong>Season:</strong>
+    <%= @anime.season_id %>
+  </p>
 
-<p>
-  <strong>Studio:</strong>
-  <%= @anime.studio_id %>
-</p>
+  <p>
+    <strong>Studio:</strong>
+    <%= @anime.studio_id %>
+  </p>
 
-<%= link_to 'Edit', edit_anime_path(@anime) %> |
-<%= link_to 'Back', animes_path %>
+  <%= link_to 'Edit', edit_anime_path(@anime) %> |
+  <%= link_to 'Back', animes_path %>
+</div>

@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 col-md-offset-2">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @studio.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @studio.name %>
+  </p>
 
-<%= link_to 'Edit', edit_studio_path(@studio) %> |
-<%= link_to 'Back', studios_path %>
+  <%= link_to 'Edit', edit_studio_path(@studio) %> |
+  <%= link_to 'Back', studios_path %>
+</div>

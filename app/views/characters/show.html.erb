@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 col-md-offset-2">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @character.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @character.name %>
+  </p>
 
-<p>
-  <strong>Anime:</strong>
-  <%= @character.anime_id %>
-</p>
+  <p>
+    <strong>Anime:</strong>
+    <%= @character.anime_id %>
+  </p>
 
-<%= link_to 'Edit', edit_character_path(@character) %> |
-<%= link_to 'Back', characters_path %>
+  <%= link_to 'Edit', edit_character_path(@character) %> |
+  <%= link_to 'Back', characters_path %>
+</div>
