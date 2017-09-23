@@ -1,15 +1,5 @@
 <%= form_for anime, class: "form-horizontal panel" do |f| %>
-  <% if anime.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
-
-      <ul>
-      <% anime.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "common/errors", locals: {form: anime} %>
 
   <div class="form-group row">
     <%= f.label :title, class: "col-md-2 col-md-offset-1"  %>

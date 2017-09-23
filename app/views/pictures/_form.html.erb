@@ -1,14 +1,5 @@
-<%= form_for @picture, class: "form-horizontal panel" do |f| %>
-  <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@picture.errors.count, "error") %>prohibited this picture from being saved:</h2>
-      <ul>
-      <% @picture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for picture, class: "form-horizontal panel" do |f| %>
+  <%= render partial: "common/errors", locals: {form: picture} %>
 
   <div class="form-group row">
     <%= f.label :name, "タイトル", class: "col-md-2 col-md-offset-1" %>
@@ -29,9 +20,19 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :tag_list, "タグ(カンマ区切り)", class: "col-md-2 col-md-offset-1" %>
+    <%= label_tag :character_names, "キャラ(ｶﾝﾏ区切り)", class: "col-md-2 col-md-offset-1" %>
     <div class="col-md-6">
-      <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control", style: "text-align: left;" %>
+      <%= text_field_tag :character_names, @characters.try(:map, &:name).try(:join, ', '), "data-role" => "tagsinput", class: "form-control" %>
+    </div>
+    <div class="col-md-3" style="text-align:left;">
+      <%= link_to "キャラ登録", new_character_path, class: "btn btn-default" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :tag_list, "タグ(ｶﾝﾏ区切り)", class: "col-md-2 col-md-offset-1" %>
+    <div class="col-md-6">
+      <%= text_field_tag 'picture[tag_list]', picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
     </div>
   </div>
 
@@ -47,7 +48,7 @@
   </div>
 
   <div class="form-group">
-    <div class="center cap_image"><%= @picture.photo.present? ? image_tag(@picture.photo.url(:large)) : "no Image" %></div>
+    <div class="center cap_image"><%= picture.photo.present? ? image_tag(picture.photo.url(:large)) : "no Image" %></div>
   </div>
 
   <div class="center">
@@ -62,7 +63,6 @@
       <% @animes.each do |anime| %>
       "<%= anime.title %>",
       <% end %>
-      "#thisisdummyforlist#"
     ];
     new Suggest.Local(
           "anime-text",
@@ -74,7 +74,8 @@
             listTagName: "li",
             classMouseOver: "over list-group-item",
             classSelect: "select list-group-item",
-            defaultClass: "list-group-item" }); // オプション
+            defaultClass: "list-group-item"
+          });
   }
 
   window.addEventListener ?

@@ -1,15 +1,5 @@
 <%= form_for character, class: "form-horizontal panel" do |f| %>
-  <% if character.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
-
-      <ul>
-      <% character.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "common/errors", locals: {form: character} %>
 
   <div class="form-group row">
     <%= f.label :name, class: "col-md-2 col-md-offset-1" %>

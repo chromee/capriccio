@@ -1,15 +1,5 @@
 <%= form_for studio, class: "form-horizontal panel" do |f| %>
-  <% if studio.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(studio.errors.count, "error") %> prohibited this studio from being saved:</h2>
-
-      <ul>
-      <% studio.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: "common/errors", locals: {form: studio} %>
 
   <div class="form-group row">
     <%= f.label :name, class: "col-md-2 col-md-offset-1" %>
