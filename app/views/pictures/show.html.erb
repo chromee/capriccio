@@ -9,6 +9,10 @@
     <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></li>
   </ul>
 
+  <div class="show-img">
+    <%= link_to image_tag(@picture.photo.url(:large), id: "photo") , @picture.photo.url(:original), target: ["_blank"] %>
+  </div>
+
   <div class="tag-list">
     <ul class="list-inline">
       <li>
@@ -24,16 +28,10 @@
     </ul>
   </div>
 
-  <div class="show_img">
-    <%= link_to image_tag(@picture.photo.url(:large), id: "photo") , @picture.photo.url(:original), target: ["_blank"] %>
-  </div>
-
-  <hr>
-
   <table class="table table-striped">
     <tr>
       <td>アニメタイトル</td>
-      <td><%= @anime.try(:title) %></td>
+      <td><%= @anime.try(:title) || "-" %></td>
     </tr>
     <% @characters.each_with_index do |character, i| %>
       <% if i == 0 %>
