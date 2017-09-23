@@ -13,6 +13,10 @@ class Picture < ApplicationRecord
 
   acts_as_taggable_on :tags
 
+  def character_ids
+    PicturesCharactersRelation.where(picture_id: self.id).pluck(:character_id)
+  end
+
   protected
     def decode_base64_image
       if image_data && content_type && original_filename

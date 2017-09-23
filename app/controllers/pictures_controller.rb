@@ -4,6 +4,7 @@ class PicturesController < ApplicationController
   protect_from_forgery except: [:create]
   before_action :set_animes, only: [:new, :edit, :create, :update]
   before_action :set_anime_id_to_params, only: [:create, :update]
+  before_action :set_characters, only: [:show, :edit, :update]
 
   PER_PAGE = 30
 
@@ -33,7 +34,7 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.save
         flash[:info] = "画像がアップロードされました"
-        save_pictures_characters_relation if params[:character_names].present?
+        save_pictures_characters_relation
         format.html { redirect_to @picture }
         format.json { render :show, status: :created, location: @picture }
       else
@@ -48,7 +49,7 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.update(picture_params)
         flash[:info] = "画像が更新されました"
-        save_pictures_characters_relation if params[:character_names].present?
+        save_pictures_characters_relation
         format.html { redirect_to @picture }
         format.json { render :show, status: :ok, location: @picture }
       else
@@ -81,6 +82,10 @@ class PicturesController < ApplicationController
       @animes = Anime.all.order(:title)
     end
 
+    def set_characters
+      @characters = Character.where(id: @picture.character_ids)
+    end
+
     def set_anime_id_to_params
       return if params[:anime_title].blank?
       anime = Anime.find_by_title(params[:anime_title])
@@ -101,10 +106,17 @@ class PicturesController < ApplicationController
     end
 
     def save_pictures_characters_relation
-      character_ids = character_ids.split(",")
-      character_ids.each do |character_id|
-        PicturesCharactersRelation.create(picture_id: @picture.id, character_id: character_id.to_i)
+      return if params[:character_names].blank?
+      character_names = params[:character_names].split(",").uniq
+      characters = Character.where(name: character_names)
+      characters.each do |character|
+        if @characters.exclude?(character)
+          PicturesCharactersRelation.create(picture_id: @picture.id, character_id: character.id)
+        end
       end
+      names = characters.map(&:name)
+      unknown_character = character_names.select {|c| names.exclude?(c) }
+      flash[:danger] = unknown_character.join(", ") + "は未登録のキャラなので登録されませんでした" if unknown_character.present?
     end
 
 end
