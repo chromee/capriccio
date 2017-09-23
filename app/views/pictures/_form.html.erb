@@ -13,40 +13,22 @@
   <div class="form-group row">
     <%= f.label :name, "タイトル", class: "col-md-2 col-md-offset-1" %>
     <div class="col-md-6">
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", id: "title-form" %>
     </div>
   </div>
 
   <div class="form-group row">
+    <%= label_tag :anime_title, "アニメタイトル", class: "col-md-2 col-md-offset-1" %>
     <div class="col-md-6">
-      <%= f.label :anime_id, "アニメ", class: "col-md-4 col-md-offset-2" %>
-      <div class="col-md-6">
-        <%= f.select :anime_id, @animes.map{|a| [a.title, a.id]}, {include_blank: "未設定"}, class: "form-control", id: "anime-select-box" %>
-      </div>
-    </div>
-    <div class="col-md-6" style="text-align: right;">
-      <%= label_tag :year, "年", class: "col-md-1" %>
-      <div class="col-md-2">
-        <%= select_tag :year, options_for_select(years_for_select), class: "form-control", id: "year-select-box" %>
-      </div>
-      <%= label_tag :season_id, "季節", class: "col-md-1" %>
-      <div class="col-md-2">
-        <%= select_tag :season_id, options_for_select(Season.all.map{|s| [s.name, s.id] }), class: "form-control", id: "season-select-box" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= label_tag :character_ids, "キャラ(カンマ区切り)", class: "col-md-2 col-md-offset-1" %>
-    <div class="col-md-6">
-      <%= text_field_tag :character_ids, nil, "data-role" => "tagsinput", class: "form-control" %>
+      <%= text_field_tag :anime_title, @anime.try(:title), class: "form-control", id: "anime-text", autocomplete: :off %>
+      <ul id="anime-suggest" class="list-group suggest" style="display:none;"></ul>
     </div>
   </div>
 
   <div class="form-group row">
     <%= f.label :tag_list, "タグ(カンマ区切り)", class: "col-md-2 col-md-offset-1" %>
     <div class="col-md-6">
-      <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
+      <%= text_field_tag 'picture[tag_list]', @picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control", style: "text-align: left;" %>
     </div>
   </div>
 
@@ -69,6 +51,35 @@
     <%= f.submit "保存", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<!-- アニメ入力処理 -->
+<script>
+  function startSuggest() {
+    var anime_list = [
+      <% @animes.each do |anime| %>
+      "<%= anime.title %>",
+      <% end %>
+      "#thisisdummyforlist#"
+    ];
+    new Suggest.Local(
+          "anime-text",
+          "anime-suggest",
+          anime_list,
+          {
+            dispMax: 10,
+            interval: 1000,
+            listTagName: "li",
+            classMouseOver: "over list-group-item",
+            classSelect: "select list-group-item",
+            defaultClass: "list-group-item" }); // オプション
+  }
+
+  window.addEventListener ?
+    window.addEventListener('load', startSuggest, false) :
+    window.attachEvent('onload', startSuggest);
+
+</script>
+
 
 <!-- タグ入力処理 -->
 <script>

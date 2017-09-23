@@ -1,0 +1,21 @@
+.suggest {
+    position: absolute;
+    left: 0;
+    background-color: #FFFFFF;
+    width: 100%;
+    z-index: 10;
+    padding-top: 3px;
+}
+.suggest li {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.suggest li.select{ /* キー上下で選択した場合のスタイル */
+    color: #FFFFFF;
+    background-color: #3366FF;
+}
+.suggest li.over{ /* マウスオーバ時のスタイル */
+    background-color: #99CCFF;
+}
