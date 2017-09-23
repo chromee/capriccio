@@ -1,5 +1,6 @@
 <h1>Editing Picture</h1>
 
-<%= render 'form', picture: @picture %>
-
-<%= link_to 'Back', picture_path(@picture), class: "btn btn-primary", style: "margin-top: 20px;" %>
+<div class="col-md-8 col-md-offset-2">
+  <%= render 'form', picture: @picture %>
+  <%= link_to 'Back', picture_path(@picture), class: "btn btn-primary", style: "margin-top: 20px;" %>
+</div>
