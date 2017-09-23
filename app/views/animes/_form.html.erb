@@ -37,6 +37,9 @@
     <div class="col-md-6">
       <%= f.select :studio_id, @studios.map{|s| [s.name, s.id]}, {}, class: "form-control" %>
     </div>
+    <div class="col-md-3" style="text-align:left;">
+      <%= link_to "制作登録", new_studio_path, class: "btn btn-default" %>
+    </div>
   </div>
 
   <div class="center">
