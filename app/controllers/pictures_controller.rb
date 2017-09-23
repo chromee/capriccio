@@ -32,8 +32,9 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
+        flash[:info] = "画像がアップロードされました"
         save_pictures_characters_relation(params[:character_ids].split(",")) if params[:character_ids].present?
-        format.html { redirect_to @picture, notice: '画像がアップロードされました' }
+        format.html { redirect_to @picture }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new, notice: "画像のアップロードに失敗しました" }
@@ -45,8 +46,9 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
+        flash[:info] = "画像が更新されました"
         save_pictures_characters_relation(params[:character_ids]) if params[:character_ids].present?
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+        format.html { redirect_to @picture }
         format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit }
@@ -80,8 +82,8 @@ class PicturesController < ApplicationController
       return if params[:anime_title].blank?
       anime = Anime.find_by_title(params[:anime_title])
       if anime.nil?
-        flash[:danger] = "アニメが登録されていません"
-        return redirect_to :back
+        flash[:danger] = "アニメが登録されていませんでした"
+        return
       end
       params[:picture][:anime_id] = anime.id
     end
