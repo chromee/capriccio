@@ -48,17 +48,17 @@
   </div>
 
   <div class="form-group">
-    <div class="center cap_image"><%= picture.photo.present? ? image_tag(picture.photo.url(:large)) : "no Image" %></div>
+    <div class="cap-image"><%= picture.photo.present? ? image_tag(picture.photo.url(:large)) : "no Image" %></div>
   </div>
 
-  <div class="center">
+  <div>
     <%= f.submit "保存", class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <!-- アニメ入力処理 -->
 <script>
-  function startSuggest() {
+  $(function() {
     var anime_list = [
       <% @animes.each do |anime| %>
       "<%= anime.title %>",
@@ -99,7 +99,7 @@
   $('form').on('change', 'input[type="file"]', function(e) {
     var file = e.target.files[0],
         reader = new FileReader(),
-        $preview = $(".cap_image");
+        $preview = $(".cap-image");
 
     // 画像ファイル以外の場合は何もしない
     if(file.type.indexOf("image") < 0){
@@ -114,8 +114,7 @@
         //.prevewの領域の中にロードした画像を表示するimageタグを追加
         $preview.append($('<img>').attr({
                   src: e.target.result,
-                  width: "50%",
-                  class: "cap_image center",
+                  class: "cap-image center",
                   title: file.name
               }));
       };
