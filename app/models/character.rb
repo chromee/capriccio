@@ -1,5 +1,5 @@
 class Character < ApplicationRecord
-  validates :title, presence: true
+  validates :name, presence: true
 
   def anime
     Anime.find_by_id(self.anime_id).to_a

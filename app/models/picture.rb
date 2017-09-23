@@ -17,6 +17,10 @@ class Picture < ApplicationRecord
     PicturesCharactersRelation.where(picture_id: self.id).pluck(:character_id)
   end
 
+  def anime
+    Anime.find_by_id(self.anime_id)
+  end
+
   protected
     def decode_base64_image
       if image_data && content_type && original_filename
