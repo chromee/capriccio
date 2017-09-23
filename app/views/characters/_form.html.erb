@@ -23,6 +23,9 @@
     <div class="col-md-6">
       <%= f.select :anime_id, @animes.map{|s| [s.title, s.id]}, {}, class: "form-control" %>
     </div>
+    <div class="col-md-3" style="text-align:left;">
+      <%= link_to "アニメ登録", new_anime_path, class: "btn btn-default" %>
+    </div>
   </div>
 
   <div>
