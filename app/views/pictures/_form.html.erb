@@ -23,6 +23,9 @@
       <%= text_field_tag :anime_title, @anime.try(:title), class: "form-control", id: "anime-text", autocomplete: :off %>
       <ul id="anime-suggest" class="list-group suggest" style="display:none;"></ul>
     </div>
+    <div class="col-md-3" style="text-align:left;">
+      <%= link_to "アニメ登録", new_anime_path, class: "btn btn-default" %>
+    </div>
   </div>
 
   <div class="form-group row">

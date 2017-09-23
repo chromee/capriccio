@@ -1,7 +1,9 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_anime, only: [:show, :edit]
   protect_from_forgery except: [:create]
   before_action :set_animes, only: [:new, :edit, :create, :update]
+  before_action :set_anime_id_to_params, only: [:create, :update]
 
   PER_PAGE = 30
 
@@ -16,7 +18,6 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @anime = Anime.find_by_id(@picture.anime_id)
   end
 
   def new
@@ -32,7 +33,7 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.save
         save_pictures_characters_relation(params[:character_ids].split(",")) if params[:character_ids].present?
-        format.html { redirect_to @picture, notice: '画像がアップロードされまし' }
+        format.html { redirect_to @picture, notice: '画像がアップロードされました' }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new, notice: "画像のアップロードに失敗しました" }
@@ -67,8 +68,22 @@ class PicturesController < ApplicationController
       @picture = Picture.find(params[:id])
     end
 
+    def set_anime
+      @anime = Anime.find_by_id(@picture.anime_id)
+    end
+
     def set_animes
       @animes = Anime.all.order(:title)
+    end
+
+    def set_anime_id_to_params
+      return if params[:anime_title].blank?
+      anime = Anime.find_by_title(params[:anime_title])
+      if anime.nil?
+        flash[:danger] = "アニメが登録されていません"
+        return redirect_to :back
+      end
+      params[:picture][:anime_id] = anime.id
     end
 
     def picture_params
