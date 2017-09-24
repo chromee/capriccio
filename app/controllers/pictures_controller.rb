@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
+  protect_from_forgery except: [:create]
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :set_anime, only: [:show, :edit]
-  protect_from_forgery except: [:create]
   before_action :set_animes, only: [:new, :edit, :create, :update]
   before_action :set_anime_id_to_params, only: [:create, :update]
   before_action :set_characters, only: [:show, :edit, :update]
@@ -9,13 +9,12 @@ class PicturesController < ApplicationController
   PER_PAGE = 30
 
   def index
+    @pictures = Picture.all.order("id desc")
     if params[:search].present?
       keywords = params[:search].split(",")
-      @pictures = Picture.tagged_with keywords, any: true
-      @pictures = @pictures.page(params[:page]).per(PER_PAGE)
-    else
-      @pictures = Picture.all.order("id desc").page(params[:page]).per(PER_PAGE)
+      @pictures = @pictures.tagged_with keywords, any: true
     end
+    @pictures = @pictures.page(params[:page]).per(PER_PAGE)
   end
 
   def show
@@ -75,7 +74,7 @@ class PicturesController < ApplicationController
     end
 
     def set_anime
-      @anime = Anime.find_by_id(@picture.anime_id)
+      @anime = @picture.anime
     end
 
     def set_animes
@@ -88,10 +87,8 @@ class PicturesController < ApplicationController
 
     def set_anime_id_to_params
       return if params[:anime_title].blank?
-      anime = Anime.find_by_title(params[:anime_title])
-      if anime.nil?
-        flash[:danger] = "アニメが登録されていませんでした"
-        return
+      unless anime = Anime.find_by_title(params[:anime_title])
+        return flash[:danger] = "アニメが登録されていませんでした"
       end
       params[:picture][:anime_id] = anime.id
     end
@@ -107,7 +104,7 @@ class PicturesController < ApplicationController
 
     def save_pictures_characters_relation
       return if params[:character_names].blank?
-      character_names = params[:character_names].split(",").uniq
+      character_names = params[:character_names].split(",").map(&:strip).uniq
       characters = Character.where(name: character_names)
       characters.each do |character|
         if @characters.exclude?(character)
@@ -117,6 +114,10 @@ class PicturesController < ApplicationController
       names = characters.map(&:name)
       unknown_character = character_names.select {|c| names.exclude?(c) }
       flash[:danger] = unknown_character.join(", ") + "は未登録のキャラなので登録されませんでした" if unknown_character.present?
+      # binding.pry
+    end
+
+    def raise_unknown_character
     end
 
 end
