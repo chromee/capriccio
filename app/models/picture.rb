@@ -11,7 +11,7 @@ class Picture < ApplicationRecord
     less_than: 20.megabytes,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
-  acts_as_taggable_on :tags
+  acts_as_taggable_on :emotions, :tags
 
   def character_ids
     PicturesCharactersRelation.where(picture_id: self.id).pluck(:character_id)
