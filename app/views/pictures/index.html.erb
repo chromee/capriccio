@@ -1,6 +1,5 @@
 <div id="pictures" class="col-md-10 col-md-offset-1">
   <ul class="page">
-    <% float = "right" %>
     <%= render @pictures %>
   </ul>
 </div>
@@ -12,15 +11,27 @@
 </div>
 
 <script>
-$(function(){
-  $("#pictures .page").infinitescroll({
-    loading: {
-      img:     "<%= image_url "loading.gif" %>",
-      msgText: ""
-    },
-    navSelector: "nav.pagination",
-    nextSelector: "nav.pagination a[rel=next]",
-    itemSelector: "#pictures li"
+  $(function(){
+    $("#pictures .page").infinitescroll({
+      loading: {
+        img:     "<%= image_url "loading.gif" %>",
+        msgText: ""
+      },
+      navSelector: "nav.pagination",
+      nextSelector: "nav.pagination a[rel=next]",
+      itemSelector: "#pictures li"
+    });
+
+    ResizeImg(".large-picture");
+    ResizeImg(".small-picture");
+    $(window).resize(function(){
+      ResizeImg(".large-picture");
+      ResizeImg(".small-picture");
+    });
   });
-});
+
+function ResizeImg(cc){
+  var width = $(cc).width();
+  $(cc).height(width * 9 / 16.0);
+}
 </script>
