@@ -6,8 +6,12 @@
   </div>
 
   <ul class="list-inline" style="text-align: right;">
+    <% emotion = Emotion[@picture.emotion_id] %>
+    <% if emotion.present? %>
+      <li class="btn btn-primary"><%= "#{emotion.name} #{emotion.icon}" %></li>
+    <% end %>
     <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary" %></li>
-    <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" %></li>
+    <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-outline" %></li>
   </ul>
 
   <div class="show-img">
@@ -23,21 +27,6 @@
         <li>
           <span class="label label-primary">
             <%= link_to tag, pictures_path(search: tag), class: "tag" %>
-          </span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="tag-list">
-    <ul class="list-inline">
-      <li>
-        <span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon"></span>
-      </li>
-      <% @picture.emotion_list.each do |emotion| %>
-        <li>
-          <span class="label label-primary">
-            <%= link_to "#{emotion} #{Emotion.all.find {|e| e.name == emotion }.try(:icon)}", pictures_path(search: emotion), class: "tag" %>
           </span>
         </li>
       <% end %>

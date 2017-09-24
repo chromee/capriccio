@@ -87,18 +87,17 @@ class PicturesController < ApplicationController
     def set_anime_id_to_params
       return if params[:anime_title].blank?
       unless anime = Anime.find_by_title(params[:anime_title])
-        return flash[:danger] = "アニメが登録されていませんでした。"
+        return flash[:danger] = "アニメが見つかりませんでした"
       end
       params[:picture][:anime_id] = anime.id
     end
 
     def picture_params
-      params[:picture][:emotion_list] = params[:picture][:emotion_list].join(",") if params[:picture][:emotion_list].present?
       if request.path_parameters[:format] == "json"
         json_request = ActionController::Parameters.new(JSON.parse(request.body.read))
-        json_request.require(:picture).permit(:name, :photo,:emotion_list, :tag_list, :anime_id)
+        json_request.require(:picture).permit(:name, :photo,:emotion_id, :tag_list, :anime_id)
       else
-        params.require(:picture).permit(:name, :photo, :emotion_list, :tag_list, :anime_id)
+        params.require(:picture).permit(:name, :photo, :emotion_id, :tag_list, :anime_id)
       end
     end
 
@@ -113,7 +112,7 @@ class PicturesController < ApplicationController
       end
       names = characters.map(&:name)
       unknown_character = character_names.select {|c| names.exclude?(c) }
-      flash[:danger] += unknown_character.join(", ") + "は未登録のキャラなので登録されませんでした。" if unknown_character.present?
+      flash[:danger] ||= unknown_character.join(", ") + "は見つかりませんでした" if unknown_character.present?
     end
 
     def save_emotion_tag

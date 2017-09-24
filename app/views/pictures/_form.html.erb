@@ -30,12 +30,12 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :emotion_list, "感情(複数可)", class: "col-md-3 form-label" %>
+    <%= f.label :emotion_id, "感情", class: "col-md-3 form-label" %>
     <div class="col-md-6">
       <div class="btn-group" data-toggle="buttons">
       <% Emotion.all.each do |emotion| %>
-        <label class="btn btn-default <%= "active" if picture.emotion_list.include?(emotion.name) %>">
-          <%= f.check_box :emotion_list, { multiple: true, include_hidden: false }, emotion.name %>
+        <label class="btn btn-default <%= "active" if emotion.id == picture.emotion_id %>">
+          <%= f.radio_button :emotion_id, emotion.id, {checked: emotion.id == picture.emotion_id} %>
           <%= emotion.name %><%= emotion.icon %>
         </label>
       <% end %>
