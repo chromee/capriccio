@@ -93,7 +93,7 @@ class PicturesController < ApplicationController
     end
 
     def picture_params
-      params[:picture][:emotion_list] = params[:picture][:emotion_list].join(",")
+      params[:picture][:emotion_list] = params[:picture][:emotion_list].join(",") if params[:picture][:emotion_list].present?
       if request.path_parameters[:format] == "json"
         json_request = ActionController::Parameters.new(JSON.parse(request.body.read))
         json_request.require(:picture).permit(:name, :photo,:emotion_list, :tag_list, :anime_id)
