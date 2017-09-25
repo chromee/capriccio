@@ -19,10 +19,27 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <!-- <div class="form-group row">
     <%= label_tag :character_names, "キャラ(ｶﾝﾏ/enter区切り)", class: "col-md-3 form-label" %>
     <div class="col-md-6">
       <%= text_field_tag :character_names, @characters.try(:map, &:name).try(:join, ', '), "data-role" => "tagsinput", class: "form-control" %>
+    </div>
+    <div class="col-md-3" style="text-align:left;">
+      <%= link_to "キャラ登録", new_character_path, class: "btn btn-default" %>
+    </div>
+  </div> -->
+
+  <div class="form-group row" id="character-form">
+    <%= f.label :character_names, "キャラ", class: "col-md-3 form-label" %>
+    <div class="col-md-6">
+      <div id="character-checkboxs" class="btn-group" data-toggle="buttons">
+      <% Emotion.all.each do |emotion| %>
+        <label class="btn btn-default <%= "active" if emotion.id == picture.emotion_id %>">
+          <%= f.check_box :character_names, {checked: emotion.id == picture.emotion_id, multiple: true, include_hidden: false }, emotion.id %>
+          <%= emotion.name %><%= emotion.icon %>
+        </label>
+      <% end %>
+      </div>
     </div>
     <div class="col-md-3" style="text-align:left;">
       <%= link_to "キャラ登録", new_character_path, class: "btn btn-default" %>
@@ -93,6 +110,17 @@
   });
 </script>
 
+<!-- キャラ選択処理 -->
+<script>
+  $(function() {
+      $('#anime-text').change(function() {
+        $.get({
+          url: "#{picture_character_for_form_path}",
+          data: { anime_title: $('#anime-text').has('option:selected').val() }
+        });
+      });
+    });
+</script>
 
 <!-- タグ入力処理 -->
 <script>

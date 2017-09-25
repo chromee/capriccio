@@ -67,6 +67,13 @@ class PicturesController < ApplicationController
     end
   end
 
+  def character_for_form
+    if params[:anime_title].present?
+      anime_ids = Anime.where(title: params[:anime_title]).pluck(:id)
+      @characters = Character.where(id: anime_ids).pluck(:id, :name)
+    end
+  end
+
   private
     def set_picture
       @picture = Picture.find(params[:id])
