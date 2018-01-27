@@ -25,6 +25,17 @@ class Picture < ApplicationRecord
     Anime.find_by_id(self.anime_id)
   end
 
+  def self.create_from_file(img_path)
+    pic = Picture.new
+    file = File.open(img_path)
+    pic.photo = file
+    file.close
+    pic.save!
+
+    # 保存サンプル
+    # Picture.create_from_file("#{Rails.root.to_s}/public/tmp/ren.jpg")
+  end
+
   protected
     def decode_base64_image
       if image_data && content_type && original_filename
