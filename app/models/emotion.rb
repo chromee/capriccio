@@ -1,17 +1,17 @@
-class Emotion
-  include Ehon
+class Emotion < ActiveHash::Base
+  self.data = [
+    { id:  1, name: "NORMAL"    , ja_name: "普通", icon: "😐" },
+    { id:  2, name: "HAPPY"     , ja_name: "笑顔", icon: "😊" },
+    { id:  3, name: "EXCIT"     , ja_name: "愉快", icon: "😁" },
+    { id:  4, name: "SAD"       , ja_name: "悲壮", icon: "😢" },
+    { id:  5, name: "ANGRY"     , ja_name: "怒り", icon: "😡" },
+    { id:  6, name: "CONFUSED"  , ja_name: "困惑", icon: "😵" },
+    { id:  7, name: "SCARED"    , ja_name: "恐怖", icon: "😱" },
+    { id:  8, name: "SHY"       , ja_name: "照れ", icon: "😆" },
+    { id:  9, name: "IMPATIENT" , ja_name: "焦り", icon: "😥" },
+    { id: 10, name: "WORRY"     , ja_name: "心配", icon: "😓" },
+  ]
 
-     HAPPY = enum 1, name: "幸福", icon: "😊"
-     EXCIT = enum 2, name: "愉快", icon: "😁"
-       SAD = enum 3, name: "悲壮", icon: "😢"
-     ANGRY = enum 4, name: "怒り", icon: "😡"
-  CONFUSED = enum 5, name: "困惑", icon: "😵"
-    SCARED = enum 6, name: "恐怖", icon: "😱"
-       SHY = enum 7, name: "照れ", icon: "😆"
- IMPATIENT = enum 8, name: "焦り", icon: "😥"
-     WORRY = enum 9, name: "心配", icon: "😓"
-   SERIOUS = enum 10, name: "真面目", icon: "😐"
-#心配
-#真面目
+#真剣
 #過酷
 end

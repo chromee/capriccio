@@ -36,7 +36,7 @@
       <% Emotion.all.each do |emotion| %>
         <label class="btn btn-default <%= "active" if emotion.id == picture.emotion_id %>">
           <%= f.radio_button :emotion_id, emotion.id, {checked: emotion.id == picture.emotion_id} %>
-          <%= emotion.name %><%= emotion.icon %>
+          <%= emotion.ja_name %><%= emotion.icon %>
         </label>
       <% end %>
       </div>

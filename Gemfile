@@ -28,7 +28,8 @@ gem 'twitter-bootstrap-rails'
 gem 'acts-as-taggable-on'
 gem 'paperclip'
 gem 'kaminari', '~> 0.17.0'
-gem 'ehon'
+gem 'active_hash'
+gem 'ruby-opencv'
 
 group :development, :test do
   gem 'byebug', platform: :mri
