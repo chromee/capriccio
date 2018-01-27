@@ -6,9 +6,9 @@
   </div>
 
   <ul class="list-inline" style="text-align: right;">
-    <% emotion = Emotion[@picture.emotion_id] %>
+    <% emotion = Emotion.find(@picture.emotion_id) %>
     <% if emotion.present? %>
-      <li class="btn btn-primary"><%= "#{emotion.name} #{emotion.icon}" %></li>
+      <li class="btn btn-primary"><%= "#{emotion.ja_name} #{emotion.icon}" %></li>
     <% end %>
     <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary" %></li>
     <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-outline" %></li>
