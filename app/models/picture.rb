@@ -1,14 +1,17 @@
 class Picture < ApplicationRecord
+  require 'opencv'
+  include OpenCV
+
   attr_accessor :content_type, :original_filename, :image_data
   before_save :decode_base64_image
 
-  belongs_to :anime, foreign_key: "anime_id"
+  # belongs_to :anime, foreign_key: "anime_id"
 
   # 画像の設定
   paperclip_opts = {
     styles: { large:"1000x1000", medium: "300x300>" } ,
     url: "/assets/arts/:id/:style/:basename.:extension",
-    path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension"}
+    path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" }
   has_attached_file :photo, paperclip_opts
   validates_attachment :photo,
     less_than: 20.megabytes,
@@ -23,6 +26,14 @@ class Picture < ApplicationRecord
 
   def anime
     Anime.find_by_id(self.anime_id)
+  end
+
+  def gray_img
+    path = "#{Rails.root.to_s}/public/assets/arts/#{self.id}"
+    img = CvMat.load("#{path}/original/#{self.photo_file_name}")
+    gray_img = img.BGR2GRAY
+    gray_img.save_image("#{path}/gray/#{self.photo_file_name}")
+    return "#{path}/gray/#{self.photo_file_name}"
   end
 
   def self.create_from_file(img_path)
