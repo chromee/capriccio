@@ -1,14 +1,10 @@
-FROM ruby:2.3.1
+FROM ruby:2.5.0
 
 ENV APP_ROOT /usr/src/anicap
 WORKDIR $APP_ROOT
 
 RUN apt-get update && \
-    apt-get install -y nodejs \
-                       mysql-client \
-                       postgresql-client \
-                       sqlite3 \
-                       --no-install-recommends && \
+    apt-get install -y nodejs mysql-client postgresql-client sqlite3 libopencv-dev --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile $APP_ROOT

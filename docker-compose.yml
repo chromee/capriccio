@@ -3,6 +3,7 @@ services:
 
   app:
     build: .
+    container_name: "anicap"
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:pass@mysql:3306
@@ -19,6 +20,7 @@ services:
 
   database:
     image: mysql:5.7.10
+    container_name: "anicap_db"
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
     ports:
