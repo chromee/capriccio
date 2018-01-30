@@ -2,14 +2,12 @@ class Picture < ApplicationRecord
   require 'opencv'
   include OpenCV
 
-  attr_accessor :content_type, :original_filename, :image_data
   before_save :decode_base64_image
-
-  # belongs_to :anime, foreign_key: "anime_id"
+  attr_accessor :content_type, :original_filename, :image_data
 
   # 画像の設定
   paperclip_opts = {
-    styles: { large:"1000x1000", medium: "300x300>" } ,
+    styles: { large:"1000x1000", medium: "300x300", face: "300x300>" } ,
     url: "/assets/arts/:id/:style/:basename.:extension",
     path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" }
   has_attached_file :photo, paperclip_opts
@@ -29,6 +27,7 @@ class Picture < ApplicationRecord
   end
 
   def gray_img
+    # face_detector = OpenCV::CvHaarClassifierCascade::load "#{Rails.root.to_s}/cascader/lbpcascade_animeface.xml"
     path = "#{Rails.root.to_s}/public/assets/arts/#{self.id}"
     img = CvMat.load("#{path}/original/#{self.photo_file_name}")
     gray_img = img.BGR2GRAY
@@ -48,6 +47,7 @@ class Picture < ApplicationRecord
   end
 
   protected
+
     def decode_base64_image
       if image_data && content_type && original_filename
         decoded_data = Base64.decode64(image_data)
