@@ -1,4 +1,4 @@
-module PicturesHelper
+module CapturesHelper
   def years_for_select
     current_year = Time.now.year.to_i
     years = []

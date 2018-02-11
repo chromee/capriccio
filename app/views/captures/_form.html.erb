@@ -1,5 +1,5 @@
-<%= form_for picture, class: "form-horizontal panel" do |f| %>
-  <%= render partial: "common/errors", locals: {form: picture} %>
+<%= form_for capture, class: "form-horizontal panel" do |f| %>
+  <%= render partial: "common/errors", locals: {form: capture} %>
 
   <!-- <div class="form-group row">
     <%= f.label :name, "タイトル", class: "col-md-3 form-label" %>
@@ -34,8 +34,8 @@
     <div class="col-md-6">
       <div class="btn-group" data-toggle="buttons">
       <% Emotion.all.each do |emotion| %>
-        <label class="btn btn-default <%= "active" if emotion.id == picture.emotion_id %>">
-          <%= f.radio_button :emotion_id, emotion.id, {checked: emotion.id == picture.emotion_id} %>
+        <label class="btn btn-default <%= "active" if emotion.id == capture.emotion_id %>">
+          <%= f.radio_button :emotion_id, emotion.id, {checked: emotion.id == capture.emotion_id} %>
           <%= emotion.ja_name %><%= emotion.icon %>
         </label>
       <% end %>
@@ -46,23 +46,23 @@
   <div class="form-group row">
     <%= f.label :tag_list, "タグ(ｶﾝﾏ/enter区切り)", class: "col-md-3 form-label" %>
     <div class="col-md-6">
-      <%= text_field_tag 'picture[tag_list]', picture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
+      <%= text_field_tag 'capture[tag_list]', capture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :photo, "画像", class: "col-md-3 form-label" %>
+    <%= f.label :picture, "画像", class: "col-md-3 form-label" %>
     <div class="col-md-6">
-      <%= f.file_field :photo, id: "photo", style: "display:none" %>
+      <%= f.file_field :picture, id: "picture", style: "display:none" %>
       <div class="input-group">
-        <input type="text" id="photoCoverTextField" class="form-control" placeholder="select file...">
+        <input type="text" id="pictureCoverTextField" class="form-control" placeholder="select file...">
         <span class="input-group-btn"><button type="button" class="btn btn-info" id="browser-btn">Browse</button></span>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="cap-image"><%= picture.photo.present? ? image_tag(picture.photo.url(:large)) : "no Image" %></div>
+    <div class="cap-image"><%= capture.picture.present? ? image_tag(capture.picture.url(:large)) : "no Image" %></div>
   </div>
 
   <div>
@@ -103,11 +103,11 @@
 
 <!-- 画像読み込み処理 -->
 <script>
-  $("#photo").change(function() {
-    $('#photoCoverTextField').val($(this).val());
+  $("#picture").change(function() {
+    $('#pictureCoverTextField').val($(this).val());
   });
   $("#browser-btn").on("click", function(){
-    $("#photo").click();
+    $("#picture").click();
   });
 
   $('form').on('change', 'input[type="file"]', function(e) {

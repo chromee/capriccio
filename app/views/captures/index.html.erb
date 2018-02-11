@@ -1,32 +1,32 @@
-<div id="pictures" class="col-md-10 col-md-offset-1">
+<div id="captures" class="col-md-10 col-md-offset-1">
   <ul class="page">
-    <%= render @pictures %>
+    <%= render @captures %>
   </ul>
 </div>
 
 <br>
 
 <div style="display: none;">
-  <%= paginate @pictures %>
+  <%= paginate @captures %>
 </div>
 
 <script>
   $(function(){
-    $("#pictures .page").infinitescroll({
+    $("#captures .page").infinitescroll({
       loading: {
         img:     "<%= image_url "loading.gif" %>",
         msgText: ""
       },
       navSelector: "nav.pagination",
       nextSelector: "nav.pagination a[rel=next]",
-      itemSelector: "#pictures li"
+      itemSelector: "#captures li"
     });
 
-    ResizeImg(".large-picture");
-    ResizeImg(".small-picture");
+    ResizeImg(".large-capture");
+    ResizeImg(".small-capture");
     $(window).resize(function(){
-      ResizeImg(".large-picture");
-      ResizeImg(".small-picture");
+      ResizeImg(".large-capture");
+      ResizeImg(".small-capture");
     });
   });
 

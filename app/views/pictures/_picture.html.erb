@@ -1,7 +1,0 @@
-<% float = picture_counter % 10 < 5 ? "left" : "right" %>
-<% css_class = picture_counter % 5 == 0 ? "large-picture" : "small-picture" %>
-<li>
-  <%= link_to picture_path(picture) do %>
-    <%= image_tag picture.photo.url(:large), class: "picutre #{css_class}", style: "float:#{float};" %>
-  <% end %>
-</li>

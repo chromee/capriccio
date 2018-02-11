@@ -1,4 +1,4 @@
-class Picture < ApplicationRecord
+class Capture < ApplicationRecord
   require 'opencv'
   include OpenCV
 
@@ -6,20 +6,19 @@ class Picture < ApplicationRecord
   attr_accessor :content_type, :original_filename, :image_data
 
   # 画像の設定
-  paperclip_opts = {
-    styles: { large:"1000x1000", medium: "300x300", face: "300x300>" } ,
-    url: "/assets/arts/:id/:style/:basename.:extension",
-    path: "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" }
-  has_attached_file :photo, paperclip_opts
-  validates_attachment :photo,
+  has_attached_file :picture,
+    styles: { large:"1000x1000", small: "300x300" } ,
+    url: "/capture/picture/:id/:style/:basename.:extension",
+    path: "#{Rails.root}/public/captures/:id/:style/:basename.:extension"
+  validates_attachment :picture,
     less_than: 20.megabytes,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   # タグの設定
-  acts_as_taggable_on :emotions, :tags
+  acts_as_taggable_on :tags
 
   def character_ids
-    PicturesCharactersRelation.where(picture_id: self.id).pluck(:character_id)
+    CapturesCharactersRelation.where(capture_id: self.id).pluck(:character_id)
   end
 
   def anime
@@ -29,21 +28,21 @@ class Picture < ApplicationRecord
   def gray_img
     # face_detector = OpenCV::CvHaarClassifierCascade::load "#{Rails.root.to_s}/cascader/lbpcascade_animeface.xml"
     path = "#{Rails.root.to_s}/public/assets/arts/#{self.id}"
-    img = CvMat.load("#{path}/original/#{self.photo_file_name}")
+    img = CvMat.load("#{path}/original/#{self.picture_file_name}")
     gray_img = img.BGR2GRAY
-    gray_img.save_image("#{path}/gray/#{self.photo_file_name}")
-    return "#{path}/gray/#{self.photo_file_name}"
+    gray_img.save_image("#{path}/gray/#{self.picture_file_name}")
+    return "#{path}/gray/#{self.picture_file_name}"
   end
 
   def self.create_from_file(img_path)
-    pic = Picture.new
+    pic = Capture.new
     file = File.open(img_path)
-    pic.photo = file
+    pic.picture = file
     file.close
     pic.save!
 
     # 保存サンプル
-    # Picture.create_from_file("#{Rails.root.to_s}/public/tmp/ren.jpg")
+    # Capture.create_from_file("#{Rails.root.to_s}/public/tmp/ren.jpg")
   end
 
   protected

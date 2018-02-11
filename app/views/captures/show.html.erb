@@ -1,21 +1,21 @@
 <div class="col-md-6 col-md-offset-3" style="text-align: center;">
 
   <div>
-    開発中確認用ID：<%= @picture.id %>
-    <%= @picture.name %>
+    開発中確認用ID：<%= @capture.id %>
+    <%= @capture.name %>
   </div>
 
   <ul class="list-inline" style="text-align: right;">
-    <% emotion = Emotion.find(@picture.emotion_id) %>
+    <% emotion = Emotion.find(@capture.emotion_id) %>
     <% if emotion.present? %>
       <li class="btn btn-primary"><%= "#{emotion.ja_name} #{emotion.icon}" %></li>
     <% end %>
-    <li><%= link_to '編集', edit_picture_path(@picture), class: "btn btn-primary" %></li>
-    <li><%= link_to '削除', @picture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-outline" %></li>
+    <li><%= link_to '編集', edit_capture_path(@capture), class: "btn btn-primary" %></li>
+    <li><%= link_to '削除', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-outline" %></li>
   </ul>
 
   <div class="show-img">
-    <%= link_to image_tag(@picture.photo.url(:large), id: "photo") , @picture.photo.url(:original), target: ["_blank"] %>
+    <%= link_to image_tag(@capture.picture.url(:large), id: "picture") , @capture.picture.url(:original), target: ["_blank"] %>
   </div>
 
   <div class="tag-list">
@@ -23,10 +23,10 @@
       <li>
         <span class="glyphicon glyphicon-tags" aria-hidden="true" id="tag-icon"></span>
       </li>
-      <% @picture.tag_list.each do |tag| %>
+      <% @capture.tag_list.each do |tag| %>
         <li>
           <span class="label label-primary">
-            <%= link_to tag, pictures_path(search: tag), class: "tag" %>
+            <%= link_to tag, captures_path(search: tag), class: "tag" %>
           </span>
         </li>
       <% end %>
