@@ -22,14 +22,14 @@ class Capture < ApplicationRecord
     Anime.find_by_id(self.anime_id)
   end
 
-  def trimming_face(x, y, w, h, character_id=nil)
+  def trimming_face(attr)
     img = CvMat.load self.picture.path
-    face_pic = img.sub_rect x, y, w, h
+    face_pic = img.sub_rect attr[:x], attr[:y], attr[:w], attr[:h]
     face = Face.new(
       capture_id: self.id,
-      character_id: character_id,
-      x: x, y: y, w: w, h: h,
-      is_face: true
+      emotion_id: attr[:emotion_id],
+      character_id: attr[:character_id],
+      x: attr[:x], y: attr[:y], w: attr[:w], h: attr[:h]
     )
     tmp_path = "#{Rails.root}/tmp/#{self.picture.original_filename}"
     face_pic.save_image tmp_path
