@@ -8,8 +8,8 @@ class Capture < ApplicationRecord
   # 画像の設定
   has_attached_file :picture,
     styles: { large:"1000x1000", small: "300x300" } ,
-    url: "/capture/picture/:id/:style/:basename.:extension",
-    path: "#{Rails.root}/public/captures/:id/:style/:basename.:extension"
+    url: "/pictures/:id/:style/:basename.:extension",
+    path: "#{Rails.root}/public/pictures/:id/:style/:basename.:extension"
   validates_attachment :picture,
     less_than: 20.megabytes,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }

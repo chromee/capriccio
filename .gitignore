@@ -20,6 +20,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-/public/captures
+/public/pictures
 /public/tmp
 /cascader
