@@ -40,21 +40,17 @@
 <% end %>
 
 <script>
-  // アニメ入力処理
   $(function() {
+    // アニメ入力処理
     var animes = <%= @animes.map(&:title).to_json.html_safe %>
     animeSuggest(animes);
-  });
 
-  // タグ入力処理
-  $(function() {
+    // タグ入力処理
     $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
-  });
 
-  // 画像読み込み処理
-  fileRead();
+    // 画像読み込み処理
+    fileRead();
 
-  $(function() {
     var hash = {x: 100, y: 100, w: 100, h: 100, name: "chara", emotion_id: 1};
     for (key in hash) {
       var input = $("<input>").attr("type", "hidden").attr("name", `characters[0][${key}]`).val(hash[key]);
