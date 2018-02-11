@@ -17,7 +17,7 @@ class Capture < ApplicationRecord
   acts_as_taggable_on :tags
 
   def character_ids
-    CapturesCharactersRelation.where(capture_id: self.id).pluck(:character_id)
+    Face.where(capture_id: self.id).pluck(:character_id)
   end
 
   def anime

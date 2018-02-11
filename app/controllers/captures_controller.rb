@@ -102,7 +102,7 @@ class CapturesController < ApplicationController
       characters = Character.where(name: character_names)
       characters.each do |character|
         if @characters.exclude?(character)
-          CapturesCharactersRelation.create(capture_id: @capture.id, character_id: character.id)
+          Face.create(capture_id: @capture.id, character_id: character.id)
         end
       end
       names = characters.map(&:name)

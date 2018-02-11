@@ -6,6 +6,6 @@ class Character < ApplicationRecord
   end
 
   def capture_ids
-    CapturesCharactersRelation.where(character_id: self.id).pluck(:capture_id)
+    Face.where(character_id: self.id).pluck(:capture_id)
   end
 end

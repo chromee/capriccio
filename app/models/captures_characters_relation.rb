@@ -1,2 +1,0 @@
-class CapturesCharactersRelation < ApplicationRecord
-end
