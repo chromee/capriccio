@@ -95,11 +95,14 @@ class CapturesController < ApplicationController
       return if params[:characters].blank?
       caharacters_name = params[:characters].values.map {|c| c[:name] }
       characters = Character.where(name: caharacters_name).to_a
+      results = []
       params[:characters].values.each do |character|
         character.each {|k,v| character[k] = v.to_i unless k == :character_id }
         character[:character_id] = characters.find {|c| c.name == character[:name] }.try(:id)
-        @capture.trimming_face character
+        result, message = @capture.trimming_face! character
+        results << { result:result, msg: message }
       end
+      flash[:danger] = results.map{|r| r[:msg]}.to_s if results.map{|r| r[:result]}.include?(false)
     end
 
 end

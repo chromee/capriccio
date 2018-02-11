@@ -22,22 +22,27 @@ class Capture < ApplicationRecord
     Anime.find_by_id(self.anime_id)
   end
 
-  def trimming_face(attr)
-    img = CvMat.load self.picture.path
-    face_pic = img.sub_rect attr[:x], attr[:y], attr[:w], attr[:h]
-    face = Face.new(
-      capture_id: self.id,
-      emotion_id: attr[:emotion_id],
-      character_id: attr[:character_id],
-      x: attr[:x], y: attr[:y], w: attr[:w], h: attr[:h]
-    )
-    tmp_path = "#{Rails.root}/tmp/#{self.picture.original_filename}"
-    face_pic.save_image tmp_path
-    File.open(tmp_path) do |pic|
-      face.picture = pic
-      face.save!
+  def trimming_face!(attr)
+    begin
+      img = CvMat.load self.picture.path
+      face_pic = img.sub_rect attr[:x], attr[:y], attr[:w], attr[:h]
+      face = Face.new(
+        capture_id: self.id,
+        emotion_id: attr[:emotion_id],
+        character_id: attr[:character_id],
+        x: attr[:x], y: attr[:y], w: attr[:w], h: attr[:h]
+      )
+      tmp_path = "#{Rails.root}/tmp/#{self.picture.original_filename}"
+      face_pic.save_image tmp_path
+      File.open(tmp_path) do |pic|
+        face.picture = pic
+        face.save!
+      end
+      File.delete tmp_path
+      return true
+    rescue => e
+      return false, e
     end
-    File.delete tmp_path
   end
 
   def self.create_from_file(img_path)
