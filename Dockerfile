@@ -1,11 +1,11 @@
 FROM ruby:2.5.0
 
-ENV APP_ROOT /usr/src/anicap
+ENV APP_ROOT /usr/src/app
 WORKDIR $APP_ROOT
 
-RUN apt-get update && \
-    apt-get install -y nodejs mysql-client postgresql-client sqlite3 libopencv-dev --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y nodejs build-essential mysql-client libopencv-dev --no-install-recommends
+RUN rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile $APP_ROOT
 COPY Gemfile.lock $APP_ROOT

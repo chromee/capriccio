@@ -5,8 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.0.5'
-gem 'mysql2'
+gem 'rails', '~> 5.1.3'
+gem 'mysql2', '0.4.10'
 gem 'puma', '~> 3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
@@ -14,7 +14,7 @@ gem 'jbuilder', '~> 2.5'
 
 # JS系
 gem 'coffee-rails', '~> 4.2'
-gem 'coffee-script-source', '1.8.0'
+gem 'coffee-script-source', '1.12.2'
 gem 'jquery-rails'
 gem "jquery-turbolinks"
 
@@ -25,6 +25,8 @@ gem 'bootstrap_tagsinput_rails'
 gem 'twitter-bootstrap-rails'
 
 # rails系
+gem 'slim-rails'
+gem 'annotate'
 gem 'acts-as-taggable-on'
 gem 'paperclip'
 gem 'kaminari', '~> 0.17.0'

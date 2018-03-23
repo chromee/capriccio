@@ -3,33 +3,33 @@ services:
 
   app:
     build: .
-    container_name: "anicap"
     environment:
       RAILS_ENV: development
-      DATABASE_URL: mysql2://root:pass@mysql:3306
+      DATABASE_URL: mysql2://root:pass@database:3306
       MYSQL_ROOT_PASSWORD: 'pass'
     ports:
       - '3000:3000'
     volumes:
-      - .:/usr/src/anicap
+      - .:/usr/src/app
       - bundle:/usr/local/bundle
-    links:
-      - database:mysql
     tty: true
     stdin_open: true
+    depends_on:
+      - database
+    command:
+      ["bash", "-c", "rm -f tmp/pids/server.pid; cron; rails server -b 0.0.0.0"]
 
   database:
     image: mysql:5.7.10
-    container_name: "anicap_db"
     environment:
       MYSQL_ROOT_PASSWORD: 'pass'
     ports:
       - '3306:3306'
     volumes:
-      - mysql-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
 
 volumes:
-  mysql-data:
+  db-data:
     driver: local
   bundle:
     driver: local
