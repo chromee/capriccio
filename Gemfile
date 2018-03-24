@@ -20,10 +20,10 @@ gem "jquery-turbolinks"
 
 # css系
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
-gem 'bootstrap_tagsinput_rails'
-gem 'twitter-bootstrap-rails'
+gem 'sass-globbing'
+gem 'bootstrap', '~> 4.0.0'
 gem 'bootstrap_form'
+gem 'bootstrap_tagsinput_rails'
 
 # rails系
 gem 'slim'

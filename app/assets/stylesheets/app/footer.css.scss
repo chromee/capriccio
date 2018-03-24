@@ -1,13 +1,10 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 footer {
   height: 80px;
   margin-top: 200px;
   a {
     color: white;
     &:hover {
-      color: $gray-darker;
+      color:#888;
     }
   }
   ul {

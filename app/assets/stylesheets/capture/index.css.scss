@@ -1,34 +1,36 @@
-$defaultDuration: .3s;
+$defaultDuration: 0.3s;
 
-#captures{
+#captures {
+  width: 100%;
   padding-bottom: 100px;
 
-  ul{
+  ul {
     list-style-type: none;
-  	padding-left: 0;
+    padding-left: 0;
   }
 
-  .picutre{
+  .picutre {
     transition-duration: $defaultDuration;
     z-index: 1;
     position: relative;
 
     &:hover {
-        transform: scale(1.05);
-        z-index: 10;
+      transform: scale(1.05);
+      z-index: 10;
     }
   }
 
-  .small-capture{
+  .small-capture {
     width: 25%;
   }
-  .large-capture{
+
+  .large-capture {
     width: 50%;
   }
 }
 
-#infscr-loading{
-  img{
+#infscr-loading {
+  img {
     transition-duration: $defaultDuration;
     padding-top: 50px;
     padding-bottom: 50px;

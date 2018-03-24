@@ -1,33 +1,30 @@
 = form_for capture, class: "form-horizontal panel" do |f|
   = render partial: "common/errors", locals: {form: capture}
 
-  .form-group.row
-    = label_tag :anime_title, "アニメタイトル", class: "col-md-3 form-label"
-    .col-md-6
+  .form-row.mt-3
+    = f.label :anime_title, class: "col-3 form-label"
+    .col-6
       = text_field_tag :anime_title, @anime.try(:title), class: "form-control", id: "anime-text", autocomplete: :off
       ul#anime-suggest.list-group.suggest style="display:none;"
 
-    .col-md-3 style="text-align:left;"
-      = link_to "アニメ登録", new_anime_path, class: "btn btn-default"
-
-  .form-group.row
-    = f.label :tag_list, "タグ(ｶﾝﾏ/enter区切り)", class: "col-md-3 form-label"
-    .col-md-6
+  .form-row.mt-3
+    = f.label :tag_list, "tags", class: "col-3 form-label"
+    .col-6
       = text_field_tag 'capture[tag_list]', capture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control"
 
-  .form-group.row
-    = f.label :picture, "画像", class: "col-md-3 form-label"
-    .col-md-6
+  .form-row.mt-3
+    = f.label :picture, class: "col-3 form-label"
+    .col-6
       = f.file_field :picture, id: "picture", style: "display:none"
       .input-group
         input#pictureCoverTextField.form-control type="text" placeholder="select file..."
-        span.input-group-btn
-          button#browser-btn.btn.btn-info type="button" Browse
+        div.input-group-append
+          button#browser-btn.btn.btn-outline-info type="button" Browse
 
-  .form-group
-    .cap-image= capture.picture.present? ? image_tag(capture.picture.url(:large)) : "no Image"
+  .form-group.mt-3
+    .cap-image.col-6.offset-3 = capture.picture.present? ? image_tag(capture.picture.url(:large), style: "width: 100%;") : "no Image"
 
-  = f.submit "保存", class: "btn btn-primary"
+  = f.submit "save", class: "btn btn-primary col-6 offset-3 mt-5"
 
 javascript:
   $(function() {

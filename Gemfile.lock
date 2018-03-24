@@ -49,9 +49,10 @@ GEM
     autoprefixer-rails (8.2.0)
       execjs
     bindex (0.5.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     bootstrap_form (2.7.0)
     bootstrap_tagsinput_rails (0.4.0)
     builder (3.2.3)
@@ -65,7 +66,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commonjs (0.2.7)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     erubi (1.7.1)
@@ -89,13 +89,6 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.8.0)
-      actionpack (>= 4.0)
-      less (~> 2.6.0)
-      sprockets (> 2, < 4)
-      tilt
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -126,6 +119,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -171,6 +165,8 @@ GEM
     ruby-opencv (0.0.18)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
+    sass-globbing (1.1.5)
+      sass (>= 3.1)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -208,11 +204,6 @@ GEM
     turbolinks (5.1.0)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
-    twitter-bootstrap-rails (4.0.0)
-      actionpack (~> 5.0, >= 5.0.1)
-      execjs (~> 2.7)
-      less-rails (~> 2.8, >= 2.8.0)
-      railties (~> 5.0, >= 5.0.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     tzinfo-data (1.2018.3)
@@ -237,7 +228,7 @@ DEPENDENCIES
   active_hash
   acts-as-taggable-on
   annotate
-  bootstrap-sass
+  bootstrap (~> 4.0.0)
   bootstrap_form
   bootstrap_tagsinput_rails
   byebug
@@ -256,13 +247,13 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.1.3)
   ruby-opencv
+  sass-globbing
   sass-rails (~> 5.0)
   slim
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
-  twitter-bootstrap-rails
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)

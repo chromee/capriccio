@@ -1,18 +1,15 @@
-header.navbar.navbar-fixed-top.navbar-inverse
-  .container
-    = link_to "あにきゃぷ", captures_path, id: "logo"
-    ul.nav.navbar-nav.navbar-right
-      li
-        = form_tag captures_path, method: :get, class: "form-inline navbar-form", style: "margin-top:10px; padding-right: 0;" do
-          .form-group
-            = text_field_tag :search, "", class: "form-control", placeholder: "タグで検索"
-      li.dropdown
-          a.dropdown-toggle href="#" data-toggle="dropdown"
-            span.glyphicon.glyphicon-off aria-hidden="true" style="font-size: 20px;"
-            b.caret style="height: 10px;"
-          ul.dropdown-menu
-            li = link_to "Upload", new_capture_path, class: "btn"
-            li.divider
-            li = link_to "アニメ一覧", animes_path, class: "btn"
-            li = link_to "キャラ一覧", characters_path, class: "btn"
-            li = link_to "制作一覧", studios_path, class: "btn"
+nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dark
+  = link_to "Anicap", root_path, class: "navbar-brand"
+
+  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item = link_to "Upload", new_capture_path, class: "nav-link"
+      li.divider
+      li.nav-item = link_to "animes", animes_path, class: "nav-link"
+      li.nav-item = link_to "characters", characters_path, class: "nav-link"
+      li.nav-item = link_to "studios", studios_path, class: "nav-link"
+    = form_tag captures_path, method: :get, class: "form-inline" do
+      = search_field_tag :search, "", class: "form-control mr-sm-2", placeholder: "search by tags"
+      = submit_tag "search", class: "btn btn-outline-info my-2 my-sm-0"
