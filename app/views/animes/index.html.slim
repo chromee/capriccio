@@ -1,7 +1,7 @@
 .col-md-8.col-md-offset-2
   p#notice = notice
   h1 Animes
-  table.table
+  table.table.table-striped
     thead
       tr
         th Title
@@ -19,5 +19,5 @@
           td = link_to 'Show', anime
           td = link_to 'Edit', edit_anime_path(anime)
           td = link_to 'Destroy', anime, method: :delete, data: { confirm: 'Are you sure?' }
-  br
+  
   = link_to 'New Anime', new_anime_path

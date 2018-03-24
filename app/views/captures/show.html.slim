@@ -4,9 +4,9 @@
   = @capture.name
 
   ul.list-inline style="text-align: right;"
-  - emotion = Emotion.find(@capture.emotion_id)
-  - if emotion.present?
-    li.btn.btn-primary = "#{emotion.ja_name} #{emotion.icon}"
+    - emotion = Emotion.find(@capture.emotion_id)
+    - if emotion.present?
+      li.btn.btn-primary = "#{emotion.ja_name} #{emotion.icon}"
     li = link_to '編集', edit_capture_path(@capture), class: "btn btn-primary"
     li = link_to '削除', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary btn-outline"
   ul

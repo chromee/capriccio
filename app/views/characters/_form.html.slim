@@ -1,16 +1,6 @@
-= form_for character, class: "form-horizontal panel" do |f|
+= bootstrap_form_for character, layout: :horizontal do |f|
   = render partial: "common/errors", locals: {form: character}
 
-  .form-group.row
-    = f.label :name, class: "col-md-2 col-md-offset-1"
-    .col-md-6
-      = f.text_field :name, class: "form-control"
-
-  .form-group.row
-    = f.label :anime_id, class: "col-md-2 col-md-offset-1"
-    .col-md-6
-      = f.select :anime_id, @animes.map{|s| [s.title, s.id]}, {}, class: "form-control"
-    .col-md-3 style="text-align:left;"
-      = link_to "アニメ登録", new_anime_path, class: "btn btn-default"
-
+  = f.text_field :name
+  = f.select :anime_id, @animes.map{|s| [s.title, s.id]}, {}
   = f.submit "保存", class: "btn btn-primary"
