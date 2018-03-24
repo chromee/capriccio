@@ -26,6 +26,9 @@ gem 'bootstrap_form'
 gem 'bootstrap_tagsinput_rails'
 
 # rails系
+gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 gem 'slim'
 gem 'slim-rails'
 gem 'annotate'

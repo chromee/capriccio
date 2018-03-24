@@ -12,6 +12,6 @@ html
       .container-fluid
         .row
           - flash.each do |message_type, message|
-            .alert.alert-#{message_type}" #{message}
+            .alert.alert-#{message_type} #{message}
         .row
           = yield

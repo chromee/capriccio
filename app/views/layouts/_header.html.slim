@@ -10,6 +10,11 @@ nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dar
       li.nav-item = link_to "animes", animes_path, class: "nav-link"
       li.nav-item = link_to "characters", characters_path, class: "nav-link"
       li.nav-item = link_to "studios", studios_path, class: "nav-link"
+      - if user_signed_in?
+        li.nav-item = link_to "log out", destroy_user_session_path, method: :delete, class: "nav-link"
+      - else
+        li.nav-item = link_to "log in", new_user_session_path, class: "nav-link"
+
     = form_tag captures_path, method: :get, class: "form-inline" do
       = search_field_tag :search, "", class: "form-control mr-sm-2", placeholder: "search by tags"
       = submit_tag "search", class: "btn btn-outline-info my-2 my-sm-0"
