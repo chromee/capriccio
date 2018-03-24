@@ -1,0 +1,24 @@
+.col-md-8.col-md-offset-2
+  p#notice
+    = notice
+  h1
+    | Studios
+  table.table
+    thead
+      tr
+        th
+          | Name
+        th[colspan="3"]
+    tbody
+      - @studios.each do |studio|
+        tr
+          td
+            = studio.name
+          td
+            = link_to 'Show', studio
+          td
+            = link_to 'Edit', edit_studio_path(studio)
+          td
+            = link_to 'Destroy', studio, method: :delete, data: { confirm: 'Are you sure?' }
+  br
+  = link_to 'New Studio', new_studio_path

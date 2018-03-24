@@ -1,0 +1,9 @@
+- if form.errors.any?
+  #error_explanation.alert.alert-danger.col-md-10.col-md-offset-1
+    h3
+      = pluralize(form.errors.count, "error")
+      |  prohibited this form from being saved:
+    ul
+      - form.errors.full_messages.each do |message|
+        li
+          = message

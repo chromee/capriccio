@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: captures
+#
+#  id                   :integer          not null, primary key
+#  name                 :string(255)
+#  anime_id             :integer
+#  emotion_id           :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#
+
 class Capture < ApplicationRecord
   require 'opencv'
   include OpenCV

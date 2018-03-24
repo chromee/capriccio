@@ -1,7 +1,0 @@
-<% float = capture_counter % 10 < 5 ? "left" : "right" %>
-<% css_class = capture_counter % 5 == 0 ? "large-capture" : "small-capture" %>
-<li>
-  <%= link_to capture_path(capture) do %>
-    <%= image_tag capture.picture.url(:large), class: "picutre #{css_class}", style: "float:#{float};" %>
-  <% end %>
-</li>

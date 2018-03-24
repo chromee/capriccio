@@ -1,0 +1,14 @@
+.col-md-8.col-md-offset-2
+  p#notice
+    = notice
+  p
+    strong
+      | Name:
+    = @character.name
+  p
+    strong
+      | Anime:
+    = @character.anime_id
+  = link_to 'Edit', edit_character_path(@character)
+  |  | 
+  = link_to 'Back', characters_path

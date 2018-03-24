@@ -23,8 +23,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'bootstrap_tagsinput_rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap_form'
 
 # rails系
+gem 'slim'
 gem 'slim-rails'
 gem 'annotate'
 gem 'acts-as-taggable-on'

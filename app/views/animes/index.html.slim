@@ -1,0 +1,23 @@
+.col-md-8.col-md-offset-2
+  p#notice = notice
+  h1 Animes
+  table.table
+    thead
+      tr
+        th Title
+        th Year
+        th Season
+        th Studio
+        th[colspan="3"]
+    tbody
+      - @animes.each do |anime|
+        tr
+          td = anime.title
+          td = anime.year
+          td = anime.season_id
+          td = anime.studio_id
+          td = link_to 'Show', anime
+          td = link_to 'Edit', edit_anime_path(anime)
+          td = link_to 'Destroy', anime, method: :delete, data: { confirm: 'Are you sure?' }
+  br
+  = link_to 'New Anime', new_anime_path

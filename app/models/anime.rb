@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: animes
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  year       :integer
+#  season_id  :integer
+#  studio_id  :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Anime < ApplicationRecord
   validates :title, uniqueness: true, presence: true
   has_many :captures, foreign_key: "anime_id"

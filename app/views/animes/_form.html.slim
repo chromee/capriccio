@@ -1,0 +1,27 @@
+= form_for anime, class: "form-horizontal panel" do |f|
+  = render partial: "common/errors", locals: {form: anime}
+
+  .form-group.row
+    = f.label :title, class: "col-md-2 col-md-offset-1"
+    .col-md-6
+      = f.text_field :title, class: "form-control"
+
+  .form-group.row
+    = f.label :year, class: "col-md-2 col-md-offset-1"
+    .col-md-6
+      = f.select :year, years_for_select, {}, class: "form-control"
+
+  .form-group.row
+    = f.label :season_id, class: "col-md-2 col-md-offset-1"
+    .col-md-6
+      = f.select :season_id, Season.all.map{|s| [s.name, s.id] }, {}, class: "form-control"
+
+  .form-group.row
+    = f.label :studio_id, class: "col-md-2 col-md-offset-1"
+    .col-md-6
+      = f.select :studio_id, @studios.map{|s| [s.name, s.id]}, {}, class: "form-control"
+    .col-md-3 style="text-align:left;"
+      = link_to "制作登録", new_studio_path, class: "btn btn-default"
+
+  .center
+    = f.submit "保存", class: "btn btn-primary"

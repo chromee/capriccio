@@ -1,0 +1,10 @@
+.col-md-8.col-md-offset-2
+  p#notice
+    = notice
+  p
+    strong
+      | Name:
+    = @studio.name
+  = link_to 'Edit', edit_studio_path(@studio)
+  |  | 
+  = link_to 'Back', studios_path

@@ -1,0 +1,6 @@
+#captures.col-md-10.col-md-offset-1
+  ul.page = render @captures
+br
+div[style="display: none;"]
+  = paginate @captures
+script  $(function(){ loading(); });
