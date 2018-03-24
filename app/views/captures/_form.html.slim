@@ -2,19 +2,19 @@
   = render partial: "common/errors", locals: {form: capture}
 
   .form-row.mt-3
-    = f.label :anime_title, class: "col-3 form-label"
-    .col-6
+    = f.label :anime_title, class: "col-2 form-label"
+    .col-10
       = text_field_tag :anime_title, @anime.try(:title), class: "form-control", id: "anime-text", autocomplete: :off
       ul#anime-suggest.list-group.suggest style="display:none;"
 
   .form-row.mt-3
-    = f.label :tag_list, "tags", class: "col-3 form-label"
-    .col-6
+    = f.label :tag_list, "tags", class: "col-2 form-label"
+    .col-10
       = text_field_tag 'capture[tag_list]', capture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control"
 
   .form-row.mt-3
-    = f.label :picture, class: "col-3 form-label"
-    .col-6
+    = f.label :picture, class: "col-2 form-label"
+    .col-10
       = f.file_field :picture, id: "picture", style: "display:none"
       .input-group
         input#pictureCoverTextField.form-control type="text" placeholder="select file..."
@@ -22,9 +22,9 @@
           button#browser-btn.btn.btn-outline-info type="button" Browse
 
   .form-group.mt-3
-    .cap-image.col-6.offset-3 = capture.picture.present? ? image_tag(capture.picture.url(:large), style: "width: 100%;") : "no Image"
+    .cap-image.col-10.offset-2 = capture.picture.present? ? image_tag(capture.picture.url(:large), style: "width: 100%;") : "no Image"
 
-  = f.submit "save", class: "btn btn-primary col-6 offset-3 mt-5"
+  = f.submit "save", class: "btn btn-primary col-6 offset-4 mt-5"
 
 javascript:
   $(function() {
