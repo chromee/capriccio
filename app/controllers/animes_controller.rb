@@ -21,7 +21,7 @@ class AnimesController < ApplicationController
 
     respond_to do |format|
       if @anime.save
-        format.html { redirect_to @anime, notice: 'Anime was successfully created.' }
+        format.html { redirect_to animes_url, notice: 'Anime was successfully created.' }
         format.json { render :show, status: :created, location: @anime }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class AnimesController < ApplicationController
   def update
     respond_to do |format|
       if @anime.update(anime_params)
-        format.html { redirect_to @anime, notice: 'Anime was successfully updated.' }
+        format.html { redirect_to animes_url, notice: 'Anime was successfully updated.' }
         format.json { render :show, status: :ok, location: @anime }
       else
         format.html { render :edit }
