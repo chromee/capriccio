@@ -21,8 +21,8 @@
         div.input-group-append
           button#browser-btn.btn.btn-outline-info type="button" Browse
 
-  .form-group.mt-3
-    .cap-image.col-10.offset-2 = capture.picture.present? ? image_tag(capture.picture.url(:large), style: "width: 100%;") : "no Image"
+  .form-group.mt-3.text-center
+    .cap-image.col-10.offset-2 = capture.picture.present? ? image_tag(capture.picture.url(:large)) : "no Image"
 
   = f.submit "save", class: "btn btn-primary col-6 offset-4 mt-5"
 
