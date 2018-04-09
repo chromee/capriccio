@@ -31,11 +31,11 @@ class CapturesController < ApplicationController
     respond_to do |format|
       if @capture.save
         trimming_face
-        flash[:info] = "画像がアップロードされました"
+        flash[:info] = "capture uploaded."
         format.html { redirect_to @capture }
         format.json { render :show, status: :created, location: @capture }
       else
-        flash[:danger] = "画像のアップロードに失敗しました"
+        flash[:danger] = "failed uploading."
         format.html { render :new }
         format.json { render json: @capture.errors, status: :unprocessable_entity }
       end
@@ -46,11 +46,11 @@ class CapturesController < ApplicationController
     respond_to do |format|
       if @capture.update(capture_params)
         trimming_face
-        flash[:info] = "画像が更新されました"
+        flash[:info] = "updated."
         format.html { redirect_to @capture }
         format.json { render :show, status: :ok, location: @capture }
       else
-        flash[:danger] = "画像の更新に失敗しました"
+        flash[:danger] = "failed updateing."
         format.html { render :edit }
         format.json { render json: @capture.errors, status: :unprocessable_entity }
       end
@@ -60,7 +60,7 @@ class CapturesController < ApplicationController
   def destroy
     @capture.destroy
     respond_to do |format|
-      flash[:danger] = "画像が削除されました"
+      flash[:danger] = "deleted"
       format.html { redirect_to captures_url }
       format.json { head :no_content }
     end
@@ -82,7 +82,7 @@ class CapturesController < ApplicationController
     def set_anime_id_to_params
       return if params[:anime_title].blank?
       unless anime = Anime.find_by_title(params[:anime_title])
-        return flash[:danger] = "アニメが見つかりませんでした"
+        return flash[:danger] = "anime is not found"
       end
       params[:capture][:anime_id] = anime.id
     end
