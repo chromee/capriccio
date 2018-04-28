@@ -8,35 +8,40 @@ end
 gem 'rails', '~> 5.1.3'
 gem 'mysql2', '0.4.10'
 gem 'puma', '~> 3.0'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-
-# JS系
 gem 'coffee-rails', '~> 4.2'
-gem 'coffee-script-source', '1.12.2'
+gem 'jbuilder', '~> 2.5'
+gem 'turbolinks', '~> 5'
+
+# html
+gem 'slim'
+gem 'slim-rails'
+# css
+gem 'sass-globbing'
+gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap_form'
+gem 'bootstrap_tagsinput_rails'
+# js
 gem 'jquery-rails'
 gem "jquery-turbolinks"
 
-# css系
-gem 'sass-rails', '~> 5.0'
-gem 'sass-globbing'
-gem 'bootstrap', '~> 4.0.0'
-gem 'bootstrap_form'
-gem 'bootstrap_tagsinput_rails'
-
-# rails系
+# いつも使う
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
-gem 'slim'
-gem 'slim-rails'
 gem 'annotate'
-gem 'acts-as-taggable-on'
-gem 'paperclip'
 gem 'kaminari', '~> 0.17.0'
 gem 'active_hash'
+
+# たまに使う
+gem 'acts-as-taggable-on', '~> 5.0'
+gem 'paperclip'
+
+# ごく稀に使う
 gem 'ruby-opencv'
+gem 'twitter'
+gem 'minimum-omniauth-scaffold'
 
 group :development, :test do
   gem 'byebug', platform: :mri
