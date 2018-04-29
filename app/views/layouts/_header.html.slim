@@ -7,10 +7,14 @@ nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dar
     ul.navbar-nav.mr-auto
       li.nav-item = link_to "Upload", new_capture_path, class: "nav-link"
       li.divider
-      li.nav-item = link_to "animes", animes_path, class: "nav-link"
-      li.nav-item = link_to "characters", characters_path, class: "nav-link"
-      li.nav-item = link_to "studios", studios_path, class: "nav-link"
-      li.nav-item = link_to "twitter", user_twitter_omniauth_authorize_path, class: "nav-link"
+      / li.nav-item = link_to "animes", animes_path, class: "nav-link"
+      / li.nav-item = link_to "characters", characters_path, class: "nav-link"
+      / li.nav-item = link_to "studios", studios_path, class: "nav-link"
+      - if user_signed_in?
+        li.nav-item = link_to "time line", timeline_twitter_index_path, class: "nav-link"
+        li.nav-item = link_to "sign out", destroy_user_session_path, method: :delete, class: "nav-link"
+      - else
+        li.nav-item = link_to "twitter", user_twitter_omniauth_authorize_path, class: "nav-link"
     = form_tag captures_path, method: :get, class: "form-inline" do
       = search_field_tag :search, "", class: "form-control mr-sm-2", placeholder: "search by tags"
       = submit_tag "search", class: "btn btn-outline-info my-2 my-sm-0"

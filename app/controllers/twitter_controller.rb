@@ -1,19 +1,21 @@
 class TwitterController < ApplicationController
+  include Common
 
   def timeline
     client = client_new
     @user = client.user
-    @tweets = client.home_timeline(include_entities: true)
+    @tweets = client.mentions
   end
 
-  private
+  def reply
+    # client.update("@mn_chorome test", in_reply_to_status_id: )
+  end
 
-  def client_new
-    Twitter::REST::Client.new do |config|
-      config.consumer_key = 'API key'
-      config.consumer_secret = 'API secret'
-      config.access_token = session[:oauth_token]
-      config.access_token_secret = session[:oauth_token_secret]
+  def tweet
+    capture = Capture.find(params[:cpature_id].to_i)
+    client = client_new
+    open(capture.picture.path) do |img|
+      @response = client.update_with_media(params[:tweet_body], img)
     end
   end
 

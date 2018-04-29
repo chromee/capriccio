@@ -1,0 +1,15 @@
+$("#tweetModal").modal("hide");
+$("#successModalBody").empty();
+$("#successModalBody").append( `\
+    <blockquote class="twitter-tweet" data-lang="ja">
+      <p lang="ja" dir="ltr">\
+        <%= @response.text %>\
+        <a href="https://twitter.com/hashtag/anicap?src=hash&amp;ref_src=twsrc%5Etfw">#anicap</a>\
+        <a href="<%= @response.media.first.url.to_s %>"><%= @response.media.first.display_url %></a>\
+      </p>\
+      &mdash; <%= @response.user.name %> (<%= @response.user.screen_name %>)\
+      <a href="https://twitter.com/Interior/status/<%= @response.id %>?ref_src=twsrc%5Etfw"><%= @response.created_at.strftime("%Y年%m月%d日") %></a>\
+    </blockquote>\
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\
+    `);
+$("#successModal").modal();

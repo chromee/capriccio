@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :twitter do
     collection do
       get :timeline
+      post :tweet
     end
   end
 end
