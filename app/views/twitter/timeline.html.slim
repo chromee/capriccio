@@ -1,0 +1,12 @@
+table.table.table-striped
+  thead
+    tr
+      td user name
+      td user screen name
+      td tweet
+  tbody
+    - @tweets.each do |tweet|
+      tr
+        td = tweet.user.name
+        td = tweet.user.screen_name
+        td = tweet.text
