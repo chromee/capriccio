@@ -41,7 +41,8 @@ gem 'paperclip'
 # ごく稀に使う
 gem 'ruby-opencv'
 gem 'twitter'
-gem 'minimum-omniauth-scaffold'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug', platform: :mri
