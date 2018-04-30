@@ -1,0 +1,25 @@
+.small-tweet{
+  display: flex;
+  .avater{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+  }
+  .small-tweet-head{
+    font-size: 14px;
+    line-height: 19px;
+    padding-left: 9px;
+    display: inline-block;
+    .small-twitter-name{
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .small-twitter-screen-name{
+      margin-top: 0;
+      white-space: nowrap;
+    }
+    .small-tweet-date{
+      color: #697882;
+    }
+  }
+}

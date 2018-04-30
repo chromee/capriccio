@@ -1,0 +1,21 @@
+<blockquote class="mb-0">
+  <%= link_to "https://twitter.com/#{tweet.user.screen_name}", class: "u-link" do %>
+    <div class="tweet-head">
+      <%= image_tag tweet.user.profile_image_url.to_s, class: "avater" %>
+      <div class="author">
+        <span class="twitter-name"><%= tweet.user.name %></span>
+        <span class="form-text text-muted twitter-screen-name">@<%= tweet.user.screen_name %></span>
+      </div>
+    </div>
+  <% end %>
+  <div class="tweet-body">
+    <p class="tweet-text">
+      <%= tweet.text %>
+    </p>
+    <div class="tweet-footer">
+      <%= link_to "https://twitter.com/Interior/status/#{tweet.id}?ref_src=twsrc%5Etfw", class: "tweet-date u-link" do %>
+        <%= tweet.created_at.strftime("%H:%M - %Y年%m月%d日") %>
+      <% end %>
+    </div>
+  </div>
+</blockquote>

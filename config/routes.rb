@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     collection do
       get :timeline
       post :tweet
+      get :replys
+      post :reply
     end
   end
 end

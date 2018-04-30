@@ -1,0 +1,63 @@
+$("#replysModalBody").empty();
+$("#replysModalBody").append( `\
+  <% @replys.each do |reply| %>
+    <div class="card m-3">\
+      <div class="card-header">\
+        <% tweet_from_reply = @tweets_from_replys[reply.in_reply_to_status_id] %>\
+        <blockquote class="m-0">
+          <div class="small-tweet">
+            <%= image_tag tweet_from_reply.user.profile_image_url.to_s, class: "avater" %>
+            <div class="small-tweet-head">
+              <div>
+                <%= link_to "https://twitter.com/#{tweet_from_reply.user.screen_name}", class: "u-link" do %>
+                  <span class="small-twitter-name"><%= tweet_from_reply.user.name %></span>
+                  <span class="small-twitter-screen-name text-muted">@<%= tweet_from_reply.user.screen_name %></span>
+                <% end %>
+                <span class="small-tweet-date text-muted">
+                  <%= link_to "https://twitter.com/Interior/status/#{tweet_from_reply.id}?ref_src=twsrc%5Etfw", class: "u-link" do %>
+                    <%= tweet_from_reply.created_at.strftime("%m月%d日") %>
+                  <% end %>
+                </span>
+              </div>
+              <div class="small-tweet-body pl-2">
+                <%= tweet_from_reply.text %>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </div>\
+      <div class="card-body clickable" data-toggle="collapse" href="#<%= reply.id %>" role="button" aria-expanded="false" aria-controls="<%= reply.id %>">\
+      <blockquote class="mb-0">
+        <%= link_to "https://twitter.com/#{reply.user.screen_name}", class: "u-link" do %>
+          <div class="tweet-head">
+            <%= image_tag reply.user.profile_image_url.to_s, class: "avater" %>
+            <div class="author">
+              <span class="twitter-name"><%= reply.user.name %></span>
+              <span class="form-text text-muted twitter-screen-name">@<%= reply.user.screen_name %></span>
+            </div>
+          </div>
+        <% end %>
+        <div class="tweet-body">
+          <p class="tweet-text">
+            <%= reply.text %>
+          </p>
+          <div class="tweet-footer">
+            <%= link_to "https://twitter.com/Interior/status/#{reply.id}?ref_src=twsrc%5Etfw", class: "tweet-date u-link" do %>
+              <%= reply.created_at.strftime("%H:%M - %Y年%m月%d日") %>
+            <% end %>
+          </div>
+        </div>
+      </blockquote>
+      </div>\
+      <div class="card-footer collapse" id="<%= reply.id %>">\
+        <%= form_tag reply_twitter_index_path, remote: true do %>\
+          <%= hidden_field_tag :capture_id, @capture_id %>
+          <%= hidden_field_tag :tweet_id, reply.id %>
+          <%= text_area_tag :tweet_body, "@#{reply.user.screen_name} #anicap", class: "form-control" %>\
+          <%= submit_tag "reply", class: "btn btn-primary btn-sm mt-3 float-right" %>\
+        <% end %>\
+      </div>\
+    </div>\
+  <% end %>\
+  `);
+$("#replysModal").modal();

@@ -1,0 +1,53 @@
+.clickable:hover{
+  cursor: pointer;
+  background: rgb(245, 248, 250);
+}
+
+.tweet-head{
+  display: flex;
+  .avater{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+  }
+  .author{
+    line-height: 1.2;
+    white-space: nowrap;
+    padding-left: 9px;
+    .twitter-name{
+      font-weight: bold;
+    }
+    .twitter-screen-name{
+      font-size: 14px;
+      margin-top: 0;
+    }
+  }
+}
+
+.tweet-body{
+  margin-top: 14px;
+
+  .tweet-text{
+    margin: 0;
+  }
+
+  .tweet-footer{
+    margin-top: 14px;
+  }
+
+  .tweet-date{
+    font-size: 14px;
+    color: #697882;
+  }
+}
+
+
+.u-link{
+  font-weight: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
+.u-link:hover{
+  color: rgb(43, 123, 185);
+  text-decoration: inherit;
+}

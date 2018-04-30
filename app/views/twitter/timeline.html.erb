@@ -1,0 +1,18 @@
+<div class="col-6 offset-3">
+  <% @replys.each do |reply| %>
+    <div class="card m-3" style="width: 100%;">
+      <div class="card-header">
+        <%= render "twitter/small_tweet", tweet: @tweets_from_replys[reply.in_reply_to_status_id] %>
+      </div>
+      <div class="card-body clickable" data-toggle="collapse" href="#<%= reply.id %>" role="button" aria-expanded="false" aria-controls="<%= reply.id %>">
+        <%= render "twitter/tweet", tweet: reply %>
+      </div>
+      <div class="card-footer collapse" id="<%= reply.id %>">
+        <%= form_tag reply_twitter_index_path do %>
+          <%= text_area_tag :tweet_body, "@#{reply.user.screen_name} #anicap", class: "form-control" %>
+          <%= submit_tag "reply", class: "btn btn-primary btn-sm mt-3 float-right" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

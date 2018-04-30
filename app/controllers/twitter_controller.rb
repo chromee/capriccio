@@ -3,16 +3,30 @@ class TwitterController < ApplicationController
 
   def timeline
     client = client_new
-    @user = client.user
-    @tweets = client.mentions
+    @replys = client.mentions(count: 5)
+    @tweets_from_replys = client.statuses(@replys.map(&:in_reply_to_status_id))
+    @tweets_from_replys = @tweets_from_replys.each_with_object({}) {|tweet, h| h[tweet.id] = tweet }
+  end
+
+  def replys
+    client = client_new
+    @replys = client.mentions(count: 5)
+    @tweets_from_replys = client.statuses(@replys.map(&:in_reply_to_status_id))
+    @tweets_from_replys = @tweets_from_replys.each_with_object({}) {|tweet, h| h[tweet.id] = tweet }
+    @capture_id = params[:capture_id].to_i
   end
 
   def reply
-    # client.update("@mn_chorome test", in_reply_to_status_id: )
+    capture = Capture.find(params[:capture_id].to_i)
+    client = client_new
+    open(capture.picture.path) do |img|
+      @response = client.update_with_media(params[:tweet_body], img, in_reply_to_status_id: params[:tweet_id].to_i)
+    end
+    render "twitter/tweet"
   end
 
   def tweet
-    capture = Capture.find(params[:cpature_id].to_i)
+    capture = Capture.find(params[:capture_id].to_i)
     client = client_new
     open(capture.picture.path) do |img|
       @response = client.update_with_media(params[:tweet_body], img)
