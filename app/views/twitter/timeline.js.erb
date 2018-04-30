@@ -1,0 +1,39 @@
+$("#timelineModalBody").empty();
+$("#timelineModalBody").append( `\
+  <% @tweets.each do |tweet| %>
+    <div class="card m-3">
+      <div class="card-body clickable" data-toggle="collapse" href="#<%= tweet.id %>" role="button" aria-expanded="false" aria-controls="<%= tweet.id %>">\
+      <blockquote class="mb-0">
+        <%= link_to "https://twitter.com/#{tweet.user.screen_name}", class: "u-link" do %>
+          <div class="tweet-head">
+            <%= image_tag tweet.user.profile_image_url.to_s, class: "avater" %>
+            <div class="author">
+              <span class="twitter-name"><%= tweet.user.name %></span>
+              <span class="form-text text-muted twitter-screen-name">@<%= tweet.user.screen_name %></span>
+            </div>
+          </div>
+        <% end %>
+        <div class="tweet-body">
+          <p class="tweet-text">
+            <%= tweet.text %>
+          </p>
+          <div class="tweet-footer">
+            <%= link_to "https://twitter.com/Interior/status/#{tweet.id}?ref_src=twsrc%5Etfw", class: "tweet-date u-link" do %>
+              <%= tweet.created_at.strftime("%H:%M - %Y年%m月%d日") %>
+            <% end %>
+          </div>
+        </div>
+      </blockquote>
+      </div>\
+      <div class="card-footer collapse" id="<%= tweet.id %>">\
+        <%= form_tag reply_twitter_index_path, remote: true do %>\
+          <%= hidden_field_tag :capture_id, @capture_id %>
+          <%= hidden_field_tag :tweet_id, tweet.id %>
+          <%= text_area_tag :tweet_body, "@#{tweet.user.screen_name} #anicap", class: "form-control" %>\
+          <%= submit_tag "tweet", class: "btn btn-primary btn-sm mt-3 float-right" %>\
+        <% end %>\
+      </div>\
+    </div>\
+  <% end %>\
+  `);
+$("#timelineModal").modal();

@@ -11,8 +11,12 @@
     .col-6 = link_to 'delete', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-lg btn-block"
 
   .row.mt-3
-    .col-6
+    .col-12
       button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
+
+  .row.mt-3
+    .col-6
+      = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
     .col-6
       = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
 
@@ -44,14 +48,15 @@ div.modal.fade#successModal tabindex="-1" role="dialog" aria-labelledby="success
         button.close type="button" data-dismiss="modal" aria-label="Close"
           span aria-hidden="true" &times;
       div.modal-body#successModalBody
-        blockquote.twitter-tweet data-lang="ja"
-          p lang="en" dir="ltr"
-            | Sunsets don&#39;t get much better than this one over
-            a href="https://twitter.com/hashtag/sunset?src=hash&amp;ref_src=twsrc%5Etfw" #sunset
-            a href="http://t.co/YuKy2rcjyU" pic.twitter.com/YuKy2rcjyU
-          | &mdash; US Department of the Interior (@Interior)
-          a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw" 2014年5月5日
-        script async="async" src="https://platform.twitter.com/widgets.js" charset="utf-8"
+
+div.modal.fade#timelineModal tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true"
+  div.modal-dialog.modal-dialog-centered role="document"
+    div.modal-content
+      div.modal-header
+        h5.modal-title#timelineModalLabel time line
+        button.close type="button" data-dismiss="modal" aria-label="Close"
+          span aria-hidden="true" &times;
+      div.modal-body#timelineModalBody
 
 div.modal.fade#replysModal tabindex="-1" role="dialog" aria-labelledby="replysModalLabel" aria-hidden="true"
   div.modal-dialog.modal-lg role="document"

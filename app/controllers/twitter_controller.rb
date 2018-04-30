@@ -3,9 +3,8 @@ class TwitterController < ApplicationController
 
   def timeline
     client = client_new
-    @replys = client.mentions(count: 5)
-    @tweets_from_replys = client.statuses(@replys.map(&:in_reply_to_status_id))
-    @tweets_from_replys = @tweets_from_replys.each_with_object({}) {|tweet, h| h[tweet.id] = tweet }
+    @tweets = client.home_timeline(count: 10)
+    @capture_id = params[:capture_id].to_i
   end
 
   def replys
