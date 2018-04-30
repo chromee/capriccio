@@ -20,6 +20,10 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+.env
+.env.dev
+.DS_Store
+
 /public/pictures
 /public/tmp
 /cascader

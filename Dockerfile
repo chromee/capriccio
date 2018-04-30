@@ -1,25 +1,23 @@
-FROM ruby:2.5.0
+FROM ruby:2.5.1
 
-ENV APP_ROOT /usr/src/app
-WORKDIR $APP_ROOT
+ENV LANG C.UTF-8
 
 RUN apt-get update
 RUN apt-get install -y nodejs build-essential mysql-client libopencv-dev --no-install-recommends
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY Gemfile $APP_ROOT
-COPY Gemfile.lock $APP_ROOT
+ENV ENTRYKIT_VERSION 0.4.0
+RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERSION}/entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
+    && tar -xvzf entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
+    && rm entrykit_${ENTRYKIT_VERSION}_Linux_x86_64.tgz \
+    && mv entrykit /bin/entrykit \
+    && chmod +x /bin/entrykit \
+    && entrykit --symlink
 
-RUN \
-  echo 'gem: --no-document' >> ~/.gemrc && \
-  cp ~/.gemrc /etc/gemrc && \
-  chmod uog+r /etc/gemrc && \
-  bundle config --global build.nokogiri --use-system-libraries && \
-  bundle config --global jobs 4 && \
-  bundle install && \
-  rm -rf ~/.gem
+RUN mkdir /app
+WORKDIR /app
+RUN bundle config build.nokogiri --use-system-libraries
 
-  COPY . $APP_ROOT
-
-  EXPOSE  3000
-  CMD ["rails", "server", "-b", "0.0.0.0"]
+ENTRYPOINT [ \
+    "prehook", "ruby -v", "--", \
+    "prehook", "bundle install -j3 --quiet", "--"]
