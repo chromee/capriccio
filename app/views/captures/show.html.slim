@@ -10,15 +10,16 @@
     .col-6 = link_to 'edit', edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
     .col-6 = link_to 'delete', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-lg btn-block"
 
-  .row.mt-3
-    .col-12
-      button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
+  - if user_signed_in?
+    .row.mt-3
+      .col-12
+        button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
 
-  .row.mt-3
-    .col-6
-      = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
-    .col-6
-      = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
+    .row.mt-3
+      .col-6
+        = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
+      .col-6
+        = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
 
   ul.tag-list.mt-3
     li
