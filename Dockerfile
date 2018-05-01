@@ -1,6 +1,7 @@
 FROM ruby:2.5.1
 
 ENV LANG C.UTF-8
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN apt-get update
 RUN apt-get install -y nodejs build-essential mysql-client libopencv-dev --no-install-recommends
