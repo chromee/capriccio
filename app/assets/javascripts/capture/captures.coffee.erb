@@ -1,4 +1,3 @@
-# 画像並び替え
 applyMasonry = (grid) ->
   return grid.masonry {
     itemSelector: '.grid-item',
@@ -10,17 +9,9 @@ applyMasonry = (grid) ->
     },
   }
 
-test = () ->
-  applyMasonry $('#grid')
-
 $ ->
   $grid = applyMasonry $('#grid')
   msnry = $grid.data 'masonry'
-
-  # $grid.imagesLoaded ->
-  #   $grid.masonry('option', { itemSelector: '.grid-item' })
-  #   items = $grid.find('.grid-item')
-  #   $grid.masonry('appended', items)
 
   $container = $grid.infiniteScroll {
     # loading: {
@@ -30,11 +21,10 @@ $ ->
     path: '.pagination .next a',
     append: '.grid-item',
     outlayer: msnry,
-    scrollThreshold: 400,
+    scrollThreshold: 100,
     hideNav: '.pagination',
     status: '.page-load-status',
   }
-  $container.on( 'append.infiniteScroll', test )
 
 $(document).on 'turbolinks:load', ->
   applyMasonry $('#grid')
