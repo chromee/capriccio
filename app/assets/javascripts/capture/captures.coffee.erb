@@ -14,20 +14,19 @@ test = () ->
   applyMasonry $('#grid')
 
 $ ->
-  grid = $('#grid')
-  grid_msnry = applyMasonry grid
-  msnry = grid.data 'masonry'
+  $grid = applyMasonry $('#grid')
+  msnry = $grid.data 'masonry'
 
-  # grid.imagesLoaded ->
-  #   grid.masonry('option', { itemSelector: '.grid-item' })
-  #   items = grid.find('.grid-item')
-  #   grid.masonry('appended', items)
+  # $grid.imagesLoaded ->
+  #   $grid.masonry('option', { itemSelector: '.grid-item' })
+  #   items = $grid.find('.grid-item')
+  #   $grid.masonry('appended', items)
 
-  $container = grid_msnry.infiniteScroll {
-    loading: {
-      img:     "<%= image_url "loading.gif" %>",
-      msgText: ""
-    },
+  $container = $grid.infiniteScroll {
+    # loading: {
+    #   img:     "<%= image_url "loading.gif" %>",
+    #   msgText: ""
+    # },
     path: '.pagination .next a',
     append: '.grid-item',
     outlayer: msnry,

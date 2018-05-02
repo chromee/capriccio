@@ -14,8 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
-//= require suggest.js
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
-//= require masonry/jquery.masonry
+//= require imagesloaded.pkgd.min.js
+//= require infinite-scroll.pkgd.min.js
+//= require masonry.pkgd.min.js
+//= require suggest.js
 //= require_tree .

@@ -122,8 +122,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
-    masonry-rails (0.2.4)
-      railties
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.9.0)
@@ -305,7 +303,6 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari (~> 0.17.0)
   listen (~> 3.0.5)
-  masonry-rails
   mysql2 (= 0.4.10)
   omniauth
   omniauth-twitter

@@ -40,7 +40,6 @@ gem 'acts-as-taggable-on', '~> 5.0'
 # 画像系
 gem 'paperclip'
 gem 'ruby-opencv'
-gem 'masonry-rails'
 
 # twitter認証
 gem 'twitter'
