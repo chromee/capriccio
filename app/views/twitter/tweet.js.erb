@@ -6,7 +6,7 @@ $("#successModalBody").append( `\
     <blockquote class="twitter-tweet" data-lang="ja">
       <p lang="ja" dir="ltr">\
         <%= @response.text %>\
-        <a href="https://twitter.com/hashtag/anicap?src=hash&amp;ref_src=twsrc%5Etfw">#anicap</a>\
+        <a href="https://twitter.com/hashtag/<%= app_name %>?src=hash&amp;ref_src=twsrc%5Etfw">#<%= app_name %></a>\
         <a href="<%= @response.media.first.url.to_s %>"><%= @response.media.first.display_url %></a>\
       </p>\
       &mdash; <%= @response.user.name %> (<%= @response.user.screen_name %>)\

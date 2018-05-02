@@ -39,7 +39,7 @@ div.row
         div.modal-body
           = form_tag tweet_twitter_index_path, remote: true do
             = hidden_field_tag :capture_id, @capture.id
-            = text_area_tag :tweet_body, " #anicap", class: "form-control"
+            = text_area_tag :tweet_body, " ##{app_name}", class: "form-control"
             = submit_tag "tweet", class: "btn btn-primary btn-lg btn-block mt-3"
 
   div.modal.fade#successModal tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true"
