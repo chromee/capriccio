@@ -1,6 +1,14 @@
-#captures
-  ul.page = render @captures
-br
+div#grid
+  - @captures.each do |capture|
+    div.grid-item
+      = link_to capture_path(capture) do
+        = image_tag capture.picture.url(:large), class: "picutre"
+
+div.page-load-status
+  p.infinite-scroll-request
+    i.fa.fa-spinner.fa-spin Loading...
+  p.infinite-scroll-last End of content
+  p.infinite-scroll-error No more pages to load
+
 div[style="display: none;"]
   = paginate @captures
-script  $(function(){ loading(); });

@@ -36,10 +36,13 @@ gem 'active_hash'
 
 # たまに使う
 gem 'acts-as-taggable-on', '~> 5.0'
-gem 'paperclip'
 
-# ごく稀に使う
+# 画像系
+gem 'paperclip'
 gem 'ruby-opencv'
+gem 'masonry-rails'
+
+# twitter認証
 gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-twitter'

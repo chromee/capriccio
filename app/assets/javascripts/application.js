@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
-//= require jquery.infinitescroll.js
 //= require suggest.js
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
+//= require masonry/jquery.masonry
 //= require_tree .

@@ -1,69 +1,70 @@
-.col-9
-  = link_to image_tag(@capture.picture.url(:large), id: "show-picture") , @capture.picture.url(:original), target: ["_blank"]
+div.row
+  div.col-9
+    = link_to image_tag(@capture.picture.url(:large), id: "show-picture") , @capture.picture.url(:original), target: ["_blank"]
 
-.col-3
-  .mt-5.mb-3
-    h1 = @capture.name || "not named"
-    / div id：#{@capture.id}
+  div.col-3
+    div.mt-5.mb-3
+      h1 = @capture.name || "not named"
+      / div id：#{@capture.id}
 
-  .row.mt-5
-    .col-6 = link_to 'edit', edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
-    .col-6 = link_to 'delete', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-lg btn-block"
+    .row.mt-5
+      .col-6 = link_to 'edit', edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
+      .col-6 = link_to 'delete', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-lg btn-block"
 
-  - if user_signed_in?
-    .row.mt-3
-      .col-12
-        button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
+    - if user_signed_in?
+      .row.mt-3
+        .col-12
+          button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
 
-    .row.mt-3
-      .col-6
-        = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
-      .col-6
-        = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
+      .row.mt-3
+        .col-6
+          = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
+        .col-6
+          = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
 
-  ul.tag-list.mt-3
-    li
-    - @capture.tag_list.each do |tag|
-      li = link_to tag, captures_path(search: tag), class: "tag btn btn-secondary"
-    - if @capture.tag_list.blank?
-      li.tag no tag
+    ul.tag-list.mt-3
+      li
+      - @capture.tag_list.each do |tag|
+        li = link_to tag, captures_path(search: tag), class: "tag btn btn-secondary"
+      - if @capture.tag_list.blank?
+        li.tag no tag
 
-div.modal.fade#tweetModal tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true"
-  div.modal-dialog.modal-dialog-centered role="document"
-    div.modal-content
-      div.modal-header
-        h5.modal-title#tweetModalLabel tweet with cap
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-      div.modal-body
-        = form_tag tweet_twitter_index_path, remote: true do
-          = hidden_field_tag :cpature_id, @capture.id
-          = text_area_tag :tweet_body, " #anicap", class: "form-control"
-          = submit_tag "tweet", class: "btn btn-primary btn-lg btn-block mt-3"
+  div.modal.fade#tweetModal tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true"
+    div.modal-dialog.modal-dialog-centered role="document"
+      div.modal-content
+        div.modal-header
+          h5.modal-title#tweetModalLabel tweet with cap
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+        div.modal-body
+          = form_tag tweet_twitter_index_path, remote: true do
+            = hidden_field_tag :cpature_id, @capture.id
+            = text_area_tag :tweet_body, " #anicap", class: "form-control"
+            = submit_tag "tweet", class: "btn btn-primary btn-lg btn-block mt-3"
 
-div.modal.fade#successModal tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true"
-  div.modal-dialog.modal-dialog-centered role="document"
-    div.modal-content
-      div.modal-header
-        h5.modal-title#successModalLabel tweet success
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-      div.modal-body#successModalBody
+  div.modal.fade#successModal tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true"
+    div.modal-dialog.modal-dialog-centered role="document"
+      div.modal-content
+        div.modal-header
+          h5.modal-title#successModalLabel tweet success
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+        div.modal-body#successModalBody
 
-div.modal.fade#timelineModal tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true"
-  div.modal-dialog.modal-dialog-centered role="document"
-    div.modal-content
-      div.modal-header
-        h5.modal-title#timelineModalLabel time line
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-      div.modal-body#timelineModalBody
+  div.modal.fade#timelineModal tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true"
+    div.modal-dialog.modal-dialog-centered role="document"
+      div.modal-content
+        div.modal-header
+          h5.modal-title#timelineModalLabel time line
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+        div.modal-body#timelineModalBody
 
-div.modal.fade#replysModal tabindex="-1" role="dialog" aria-labelledby="replysModalLabel" aria-hidden="true"
-  div.modal-dialog.modal-lg role="document"
-    div.modal-content
-      div.modal-header
-        h5.modal-title#replysModalLabel replys to you
-        button.close type="button" data-dismiss="modal" aria-label="Close"
-          span aria-hidden="true" &times;
-      div.modal-body#replysModalBody
+  div.modal.fade#replysModal tabindex="-1" role="dialog" aria-labelledby="replysModalLabel" aria-hidden="true"
+    div.modal-dialog.modal-lg role="document"
+      div.modal-content
+        div.modal-header
+          h5.modal-title#replysModalLabel replys to you
+          button.close type="button" data-dismiss="modal" aria-label="Close"
+            span aria-hidden="true" &times;
+        div.modal-body#replysModalBody

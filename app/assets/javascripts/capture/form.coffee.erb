@@ -1,30 +1,4 @@
-### Indexまわりのメソッド
-###
-window.loading = ->
-  $("#captures .page").infinitescroll {
-    loading: {
-      img:     "<%= image_url "loading.gif" %>",
-      msgText: ""
-    },
-    navSelector: "nav.pagination",
-    nextSelector: "nav.pagination a[rel=next]",
-    itemSelector: "#captures li"
-  }
-
-  ResizeImg ".large-capture"
-  ResizeImg ".small-capture"
-  $(window).resize ->
-    ResizeImg ".large-capture"
-    ResizeImg ".small-capture"
-
-ResizeImg = (cc) ->
-  width = $(cc).width()
-  $(cc).height(width * 9 / 16.0)
-
-### Formまわりのメソッド
-###
-
-# Animeサジェスト処理
+# Animeサジェスト
 window.animeSuggest = (animes) ->
   new Suggest.Local(
     "anime-text",
@@ -39,7 +13,7 @@ window.animeSuggest = (animes) ->
       defaultClass: "list-group-item"
     })
 
-# 画像読み込み処理
+# 画像読み込み
 window.fileRead = ->
   $("#picture").change ->
     $('#pictureCoverTextField').val $(this).val()

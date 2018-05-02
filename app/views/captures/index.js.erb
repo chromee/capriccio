@@ -1,0 +1,7 @@
+$("#masonry-container").append(`
+  <div class="mas-box">
+    <%= link_to capture_path(capture) do %>
+      <%= image_tag capture.picture.url(:large), class: "picutre" %>
+    <% end %>
+  </div>
+`);
