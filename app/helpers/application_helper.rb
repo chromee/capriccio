@@ -13,4 +13,8 @@ module ApplicationHelper
     "Capp"
   end
 
+  def tweet_template
+    " ##{app_name} - #{root_url}"
+  end
+
 end
