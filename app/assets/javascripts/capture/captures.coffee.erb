@@ -9,7 +9,7 @@ applyMasonry = (grid) ->
     },
   }
 
-$ ->
+$(document).on 'turbolinks:load', ->
   $grid = applyMasonry $('#grid')
   msnry = $grid.data 'masonry'
 
@@ -17,10 +17,9 @@ $ ->
     path: '.pagination .next a',
     append: '.grid-item',
     outlayer: msnry,
-    scrollThreshold: 100,
-    hideNav: '.pagination',
+    scrollThreshold: 10,
+    hideNav: '.pagination a[rel=next]',
     status: '.page-load-status',
+    debug: true,
   }
-
-$(document).on 'turbolinks:load', ->
   applyMasonry $('#grid')
