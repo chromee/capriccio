@@ -3,15 +3,26 @@ $("#timelineModal").modal("hide");
 $("#replysModal").modal("hide");
 $("#successModalBody").empty();
 $("#successModalBody").append( `\
-    <blockquote class="twitter-tweet" data-lang="ja">
-      <p lang="ja" dir="ltr">\
-        <%= @response.text %>\
-        <a href="https://twitter.com/hashtag/<%= app_name %>?src=hash&amp;ref_src=twsrc%5Etfw">#<%= app_name %></a>\
-        <a href="<%= @response.media.first.url.to_s %>"><%= @response.media.first.display_url %></a>\
-      </p>\
-      &mdash; <%= @response.user.name %> (<%= @response.user.screen_name %>)\
-      <a href="https://twitter.com/Interior/status/<%= @response.id %>?ref_src=twsrc%5Etfw"><%= @response.created_at.strftime("%Y年%m月%d日") %></a>\
-    </blockquote>\
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\
+    <blockquote class="mb-0">
+      <%= link_to "https://twitter.com/#{@response.user.screen_name}", class: "u-link" do %>
+        <div class="tweet-head">
+          <%= image_tag @response.user.profile_image_url.to_s, class: "avater" %>
+          <div class="author">
+            <span class="twitter-name"><%= @response.user.name %></span>
+            <span class="form-text text-muted twitter-screen-name">@<%= @response.user.screen_name %></span>
+          </div>
+        </div>
+      <% end %>
+      <div class="tweet-body">
+        <p class="tweet-text">
+          <%= @response.text %>
+        </p>
+        <div class="tweet-footer">
+          <%= link_to "https://twitter.com/Interior/status/#{@response.id}?ref_src=twsrc%5Etfw", class: "tweet-date u-link" do %>
+            <%= @response.created_at.strftime("%H:%M - %Y年%m月%d日") %>
+          <% end %>
+        </div>
+      </div>
+    </blockquote>
     `);
 $("#successModal").modal();
