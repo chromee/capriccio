@@ -2,17 +2,19 @@ doctype html
 html lang="ja"
   head
     title = full_title(yield(:title))
-    meta name="viewport" content="width=device-width"
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = render 'layouts/shim'
-    script async="async" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     javascript:
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-5736713726533693",
         enable_page_level_ads: true
       });
+
+    meta name="viewport" content="width=device-width"
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'layouts/shim'
   body
     = render 'layouts/header'
     #warp
