@@ -5,10 +5,13 @@ div#grid
         = image_tag capture.picture.url(:large), class: "picutre"
 
 div.page-load-status
-  p.infinite-scroll-request
-    i.fa.fa-spinner.fa-spin Loading...
+  p.infinite-scroll-request.loader-ellips
+    span.loader-ellips__dot
+    span.loader-ellips__dot
+    span.loader-ellips__dot
+    span.loader-ellips__dot
   p.infinite-scroll-last End of content
   p.infinite-scroll-error No more pages to load
 
-div[style="display: none;"]
+div.cap-pagination
   = paginate @captures

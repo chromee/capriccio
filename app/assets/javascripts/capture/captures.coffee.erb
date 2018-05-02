@@ -14,10 +14,6 @@ $ ->
   msnry = $grid.data 'masonry'
 
   $container = $grid.infiniteScroll {
-    # loading: {
-    #   img:     "<%= image_url "loading.gif" %>",
-    #   msgText: ""
-    # },
     path: '.pagination .next a',
     append: '.grid-item',
     outlayer: msnry,
