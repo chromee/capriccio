@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.turbolinks
+//= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
 //= require imagesloaded.pkgd.min.js
