@@ -6,9 +6,12 @@ class CapturesController < ApplicationController
 
   def index
     @captures = Capture.all.order("id desc")
-    if params[:search].present?
-      keywords = params[:search].split(",")
+    case params[:serch_type_id].to_i
+    when SearchType::TAG.id
+      keywords = params[:search_text].split(",")
       @captures = @captures.tagged_with keywords, any: true
+    when SearchType::COMMENT.id
+      @captures = @captures.where("comment like ?", "%#{params[:search_text]}%")
     end
     @captures = @captures.page(params[:page]).per(PER_PAGE)
   end

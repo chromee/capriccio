@@ -16,5 +16,6 @@ nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dar
       - else
         li.nav-item = link_to "twitter sign in", user_twitter_omniauth_authorize_path, class: "nav-link"
     = form_tag captures_path, method: :get, class: "form-inline" do
-      = search_field_tag :search, "", class: "form-control mr-sm-2", placeholder: "search by tags"
+      = select_tag :serch_type_id, options_for_select(SearchType.all.map {|search_type| [search_type.name, search_type.id] }, selected: params[:serch_type_id]), include_blank: true, class: "form-control mr-sm-2"
+      = search_field_tag :search_text, params[:search_text], class: "form-control mr-sm-2"
       = submit_tag "search", class: "btn btn-outline-info my-2 my-sm-0"
