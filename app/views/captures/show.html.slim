@@ -1,5 +1,5 @@
 div.row
-  div.col-9.text-center
+  div.col-xl-9.col-lg-12.text-center
     = link_to image_tag(@capture.picture.url(:large), id: "show-picture") , @capture.picture.url(:original), target: ["_blank"]
     javascript:
       var picture = document.getElementById( "show-picture" );
@@ -10,7 +10,7 @@ div.row
         picture.id = "vertical-picture";
       }
 
-  div.col-3
+  div.col-xl-3.col-lg-12
     div.mt-5.mb-3
       h1 = @capture.name || "not named"
       / div id：#{@capture.id}

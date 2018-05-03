@@ -10,3 +10,20 @@
 #horizontal-picture{
   width: 100%;
 }
+
+@media screen and (min-width:0px){
+  #vertical-picture, #horizontal-picture{
+    width: 100%;
+  }
+
+}
+
+@media screen and (min-width: 1200px){
+  #vertical-picture{
+    height: 100%;
+  }
+
+  #horizontal-picture{
+    width: 100%;
+  }
+}
