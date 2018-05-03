@@ -16,6 +16,7 @@
 
 class Capture < ApplicationRecord
   require 'opencv'
+  require "google/cloud/vision"
   include OpenCV
 
   # 画像の設定
@@ -70,6 +71,12 @@ class Capture < ApplicationRecord
 
     # 保存サンプル
     # Capture.create_from_file("#{Rails.root.to_s}/public/tmp/ren.jpg")
+  end
+
+  def generate_message
+    vision = Google::Cloud::Vision.new project: ENV.fetch('GOOGLE_PROJECT_ID')
+    image  = vision.image self.picture.path
+    return image.text
   end
 
 end

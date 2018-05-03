@@ -45,6 +45,9 @@ gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'google-api-client', '~> 0.11'
+gem "google-cloud-vision"
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'

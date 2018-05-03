@@ -22,6 +22,7 @@
 
 .env
 .env.dev
+.key.json
 .DS_Store
 
 /public/pictures
