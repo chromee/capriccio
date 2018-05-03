@@ -27,6 +27,7 @@ class CapturesController < ApplicationController
     @capture = Capture.new(capture_params)
     respond_to do |format|
       if @capture.save
+        @capture.generate_message!
         flash[:info] = "capture uploaded."
         format.html { redirect_to @capture }
         format.json { render :show, status: :created, location: @capture }

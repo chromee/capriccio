@@ -11,11 +11,12 @@ div.row
       }
 
   div.col-xl-3.col-lg-12
-    div.mt-5.mb-3
+    div.mt-3
       h1 = @capture.name || "not named"
-      / div id：#{@capture.id}
+      div.card
+        div.card-body = @capture.comment
 
-    .row.mt-5
+    .row.mt-3
       .col-6 = link_to 'edit', edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
       .col-6 = link_to 'delete', @capture, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-lg btn-block"
 

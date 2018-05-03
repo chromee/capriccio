@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180429033756) do
 
   create_table "captures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.text "comment"
     t.integer "anime_id"
     t.integer "emotion_id"
     t.datetime "created_at", null: false

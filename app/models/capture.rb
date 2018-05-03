@@ -4,6 +4,7 @@
 #
 #  id                   :integer          not null, primary key
 #  name                 :string(255)
+#  comment              :text(65535)
 #  anime_id             :integer
 #  emotion_id           :integer
 #  created_at           :datetime         not null
@@ -73,10 +74,10 @@ class Capture < ApplicationRecord
     # Capture.create_from_file("#{Rails.root.to_s}/public/tmp/ren.jpg")
   end
 
-  def generate_message
+  def generate_message!
     vision = Google::Cloud::Vision.new project: ENV.fetch('GOOGLE_PROJECT_ID')
     image  = vision.image self.picture.path
-    return image.text
+    self.update_attribute(:comment, image.text)
   end
 
 end
