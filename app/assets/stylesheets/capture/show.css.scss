@@ -3,22 +3,13 @@
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-#vertical-picture{
-  height: 100%;
-}
-
-#horizontal-picture{
-  width: 100%;
-}
-
-@media screen and (min-width:0px){
+@media screen and (max-width: 1360px){
   #vertical-picture, #horizontal-picture{
     width: 100%;
   }
-
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1360px){
   #vertical-picture{
     height: 100%;
   }

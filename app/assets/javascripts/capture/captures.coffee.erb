@@ -1,5 +1,6 @@
-applyMasonry = (grid) ->
-  return grid.masonry {
+
+$ ->
+  $grid = $('#grid').masonry {
     itemSelector: '.grid-item',
     gutterWidth: 5,
     isAnimated: true,
@@ -9,8 +10,6 @@ applyMasonry = (grid) ->
     },
   }
 
-$ ->
-  $grid = applyMasonry $('#grid')
   msnry = $grid.data 'masonry'
 
   $container = $grid.infiniteScroll {
@@ -22,3 +21,7 @@ $ ->
     status: '.page-load-status',
     debug: true,
   }
+
+  relayout = () ->
+    $grid.masonry()
+  setTimeout relayout, 100
