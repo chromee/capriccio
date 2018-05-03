@@ -11,6 +11,14 @@ div.row
       }
 
   div.col-xl-3.col-lg-12
+
+    div.mt-3
+      div.card
+        div.card-header tags
+        div.card-body
+          - @capture.tag_list.each do |tag|
+            span = link_to tag, captures_path(search: tag), class: "tag btn btn-secondary mr-1"
+            
     div.mt-3
       div.card
         div.card-header comment
@@ -30,13 +38,6 @@ div.row
           = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
         .col-6
           = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
-
-    ul.tag-list.mt-3
-      li
-      - @capture.tag_list.each do |tag|
-        li = link_to tag, captures_path(search: tag), class: "tag btn btn-secondary"
-      - if @capture.tag_list.blank?
-        li.tag no tag
 
   div.modal.fade#tweetModal tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true"
     div.modal-dialog.modal-dialog-centered role="document"
