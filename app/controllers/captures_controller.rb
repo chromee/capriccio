@@ -1,6 +1,9 @@
 class CapturesController < ApplicationController
   protect_from_forgery except: [:create]
   before_action :set_capture, only: [:show, :edit, :update, :destroy]
+  before_action :set_anime, only: [:show, :edit]
+  before_action :set_animes, only: [:new, :edit, :create, :update]
+  before_action :set_anime_id_to_params, only: [:create, :update]
 
   PER_PAGE = 30
 
@@ -27,6 +30,7 @@ class CapturesController < ApplicationController
     @capture = Capture.new(capture_params)
     respond_to do |format|
       if @capture.save
+        trimming_face
         flash[:info] = "capture uploaded."
         format.html { redirect_to @capture }
         format.json { render :show, status: :created, location: @capture }
@@ -41,6 +45,7 @@ class CapturesController < ApplicationController
   def update
     respond_to do |format|
       if @capture.update(capture_params)
+        trimming_face
         flash[:info] = "updated."
         format.html { redirect_to @capture }
         format.json { render :show, status: :ok, location: @capture }
