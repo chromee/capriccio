@@ -2,10 +2,9 @@
   = render partial: "common/errors", locals: {form: capture}
 
   .form-row.mt-3
-    = f.label :anime_title, class: "col-2 form-label"
+    = f.label :name, class: "col-2 form-label"
     .col-10
-      = text_field_tag :anime_title, @anime.try(:title), class: "form-control", id: "anime-text", autocomplete: :off
-      ul#anime-suggest.list-group.suggest style="display:none;"
+      = f.text_field :name, class: "form-control"
 
   .form-row.mt-3
     = f.label :tag_list, "tags", class: "col-2 form-label"
@@ -28,9 +27,6 @@
 
 javascript:
   $(function() {
-    // アニメ入力処理
-    var animes = #{@animes.map(&:title).to_json.html_safe}
-    animeSuggest(animes);
 
     // タグ入力処理
     $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
@@ -38,9 +34,4 @@ javascript:
     // 画像読み込み処理
     fileRead();
 
-    var hash = {x: 100, y: 100, w: 100, h: 100, name: "chara", emotion_id: 1};
-    for (key in hash) {
-      var input = $("<input>").attr("type", "hidden").attr("name", `characters[0][${key}]`).val(hash[key]);
-      $('form').append($(input));
-    };
   });
