@@ -2,14 +2,14 @@
   = render partial: "common/errors", locals: {form: capture}
 
   .form-row.mt-3
-    = f.label :name, class: "col-2 form-label"
-    .col-10
-      = f.text_field :name, class: "form-control"
-
-  .form-row.mt-3
     = f.label :tag_list, "tags", class: "col-2 form-label"
     .col-10
       = text_field_tag 'capture[tag_list]', capture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control"
+
+  .form-row.mt-3
+    = f.label :comment, class: "col-2 form-label"
+    .col-10
+      = f.text_area :comment, class: "form-control"
 
   .form-row.mt-3
     = f.label :picture, class: "col-2 form-label"

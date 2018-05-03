@@ -30,7 +30,7 @@ class CapturesController < ApplicationController
     @capture = Capture.new(capture_params)
     respond_to do |format|
       if @capture.save
-        @capture.generate_message!
+        @capture.generate_message! if capture_params[:comment].blank?
         flash[:info] = "capture uploaded."
         format.html { redirect_to @capture }
         format.json { render :show, status: :created, location: @capture }
@@ -71,7 +71,7 @@ class CapturesController < ApplicationController
     end
 
     def capture_params
-      params.require(:capture).permit(:name, :picture, :tag_list, :anime_id)
+      params.require(:capture).permit(:name, :comment, :picture, :tag_list, :anime_id)
     end
 
 end
