@@ -9,7 +9,7 @@ applyMasonry = (grid) ->
     },
   }
 
-$(document).on 'turbolinks:load', ->
+$ ->
   $grid = applyMasonry $('#grid')
   msnry = $grid.data 'masonry'
 
