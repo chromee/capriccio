@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :studios
   resources :animes
   resources :characters
-  resources :captures
+  resources :captures do
+    member do
+      post :favorite
+    end
+  end
 
   resources :twitter do
     collection do

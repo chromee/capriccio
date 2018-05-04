@@ -1,6 +1,6 @@
 class CapturesController < ApplicationController
   protect_from_forgery except: [:create]
-  before_action :set_capture, only: [:show, :edit, :update, :destroy]
+  before_action :set_capture, only: [:show, :edit, :update, :destroy, :favorite]
 
   PER_PAGE = 30
 
@@ -17,6 +17,7 @@ class CapturesController < ApplicationController
   end
 
   def show
+    @favorite = UserFavoriteCapture.all.where(user_id: current_user.id, capture_id: @capture.id).first&.favorite
   end
 
   def new
@@ -63,6 +64,11 @@ class CapturesController < ApplicationController
       format.html { redirect_to captures_url }
       format.json { head :no_content }
     end
+  end
+
+  def favorite
+    @favorite = UserFavoriteCapture.find_or_create_by(user_id: current_user.id, capture_id: @capture.id)
+    @favorite.update_attributes(favorite: params[:favorite])
   end
 
   private

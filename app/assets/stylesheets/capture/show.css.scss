@@ -18,3 +18,10 @@
     width: 100%;
   }
 }
+
+#favorite-btn{
+  transition-duration: 1.8s;
+  &:active{
+    transform: scale(5);
+  }
+}

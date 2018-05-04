@@ -1,0 +1,4 @@
+var favBtn = $("#favorite-btn")
+var replacedURL = favBtn.attr("href").replace("?favorite=<%= @favorite.favorite? %>", "?favorite=<%= !@favorite.favorite? %>");
+favBtn.attr("href", replacedURL);
+favBtn.html("<%= @favorite.favorite? ? '😍' : '😑' %>");
