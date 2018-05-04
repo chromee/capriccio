@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def tweet_template
-    " / #{root_url}"
+    " #{root_url}"
   end
 
 end
