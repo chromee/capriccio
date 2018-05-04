@@ -21,7 +21,7 @@ class CapturesController < ApplicationController
   end
 
   def show
-    @favorite = UserFavoriteCapture.all.where(user_id: current_user.id, capture_id: @capture.id).first&.favorite
+    @favorite = UserFavoriteCapture.all.where(user_id: current_user.id, capture_id: @capture.id).first&.favorite if user_signed_in?
   end
 
   def new

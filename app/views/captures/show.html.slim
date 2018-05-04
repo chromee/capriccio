@@ -27,7 +27,7 @@ div.row
     .row.mt-3
       .col-4 = link_to "edit", edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
       .col-4 = link_to "delete", @capture, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-lg btn-block"
-      .col-4 = link_to @favorite ? "😍" : "😑", favorite_capture_path(@capture, favorite: !@favorite), method: :post, remote: true, class: "btn btn-outline-light btn-lg btn-block", id: "favorite-btn"
+      .col-4 = link_to @favorite ? "😍" : "😑", favorite_capture_path(@capture, favorite: !@favorite), method: :post, remote: true, class: "btn btn-outline-light btn-lg btn-block", id: "favorite-btn" if user_signed_in?
 
     - if user_signed_in?
       .row.mt-3
