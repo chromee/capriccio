@@ -13,6 +13,10 @@ class CapturesController < ApplicationController
     when SearchType::COMMENT.id
       @captures = @captures.where("comment like ?", "%#{params[:search_text]}%")
     end
+    if params[:favorite]
+      @favorites = UserFavoriteCapture.where(user_id: current_user.id)
+      @captures = @captures.where(id: @favorites.map(&:capture_id))
+    end
     @captures = @captures.page(params[:page]).per(PER_PAGE)
   end
 

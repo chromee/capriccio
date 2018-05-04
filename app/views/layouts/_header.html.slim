@@ -6,6 +6,7 @@ nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dar
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item = link_to "Upload", new_capture_path, class: "nav-link"
+      li.nav-item = link_to "Favorites", root_path(favorite: true), class: "nav-link"
       li.divider
       / li.nav-item = link_to "animes", animes_path, class: "nav-link"
       / li.nav-item = link_to "characters", characters_path, class: "nav-link"
