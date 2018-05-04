@@ -19,9 +19,7 @@
   }
 }
 
-#favorite-btn{
-  transition-duration: 1.8s;
-  &:active{
-    transform: scale(5);
-  }
+.fav-expand{
+  transition-duration: 500ms;
+  transform: scale(1.3);
 }
