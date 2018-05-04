@@ -25,3 +25,4 @@ $ ->
   relayout = () ->
     $grid.masonry()
   setTimeout relayout, 100
+  setTimeout relayout, 1000
