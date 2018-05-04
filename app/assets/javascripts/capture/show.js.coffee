@@ -7,7 +7,7 @@ $ ->
       favBtn.html "😑"
     else
       favBtn.html "😍"
-    toggle()
-    setTimeout toggle, 350
+      toggle()
+      setTimeout toggle, 350
 
   favBtn.on "click", switchFav
