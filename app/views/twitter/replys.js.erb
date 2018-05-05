@@ -55,7 +55,7 @@ $("#replysModalBody").append( `\
         <%= form_tag reply_twitter_index_path, remote: true do %>\
           <%= hidden_field_tag :capture_id, @capture_id %>
           <%= hidden_field_tag :tweet_id, reply.id %>
-          <%= text_area_tag :tweet_body, "@#{reply.user.screen_name}#{tweet_template}", class: "form-control" %>\
+          <%= text_area_tag :tweet_body, "@#{reply.user.screen_name} ", class: "form-control" %>\
           <%= submit_tag "reply", class: "btn btn-primary btn-sm mt-3 float-right" %>\
         <% end %>\
       </div>\
