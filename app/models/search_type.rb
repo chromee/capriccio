@@ -4,6 +4,6 @@ class SearchType < ActiveHash::Base
 
   self.data = [
     { id:  1, type: "TAG"    , name: "tag" },
-    { id:  2, type: "COMMENT", name: "commit" },
+    { id:  2, type: "COMMENT", name: "comment" },
   ]
 end
