@@ -7,11 +7,11 @@ class CapturesController < ApplicationController
   def index
     @captures = Capture.all.order("id desc")
     case params[:serch_type_id].to_i
+    when SearchType::COMMENT.id
+      @captures = @captures.where("comment like ?", "%#{params[:search_text]}%")
     when SearchType::TAG.id
       keywords = params[:search_text].split(",")
       @captures = @captures.tagged_with keywords, any: true
-    when SearchType::COMMENT.id
-      @captures = @captures.where("comment like ?", "%#{params[:search_text]}%")
     end
     if params[:favorite]
       @favorites = UserFavoriteCapture.where(user_id: current_user.id)
