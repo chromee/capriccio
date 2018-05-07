@@ -1,14 +1,15 @@
 $defaultDuration: 0.3s;
 
 .picutre {
-  width: 300px;
+  width: 350px;
   border: thick solid #fff;
   border-radius: 5%;
   transition-duration: $defaultDuration;
   z-index: 1;
+  image-rendering: auto;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.5);
   }
 }
 
@@ -33,4 +34,13 @@ $defaultDuration: 0.3s;
 
 .cap-pagination{
   display: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 20%;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  text-align: center;
 }
