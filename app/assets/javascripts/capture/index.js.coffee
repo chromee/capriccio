@@ -1,8 +1,8 @@
-
 $ ->
   $grid = $('#grid').masonry {
     itemSelector: '.grid-item',
     gutterWidth: 5,
+    fitWidth: true,
     isAnimated: true,
     animationOptions: {
       duration: 500,
@@ -10,16 +10,15 @@ $ ->
     },
   }
 
-  msnry = $grid.data 'masonry'
+  $msnry = $grid.data 'masonry'
 
   $container = $grid.infiniteScroll {
     path: '.pagination .next a',
     append: '.grid-item',
-    outlayer: msnry,
+    outlayer: $msnry,
     scrollThreshold: 10,
     hideNav: '.pagination a[rel=next]',
     status: '.page-load-status',
-    debug: true,
   }
 
   relayout = () ->

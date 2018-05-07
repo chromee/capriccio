@@ -1,7 +1,7 @@
 $defaultDuration: 0.3s;
 
 .picutre {
-  width: 420px;
+  width: 300px;
   border: thick solid #fff;
   border-radius: 5%;
   transition-duration: $defaultDuration;
@@ -12,9 +12,12 @@ $defaultDuration: 0.3s;
   }
 }
 
-.grid-item{
-  margin-bottom: 10px;
+#grid{
+  margin: 0 auto;
+}
 
+.grid-item{
+  margin: 0 auto;
   &:hover {
     z-index: 10;
   }
