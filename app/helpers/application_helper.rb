@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def app_name
-    "Capp"
+    "Capriccio"
   end
 
   def tweet_template

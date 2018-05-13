@@ -9,12 +9,12 @@ default: &default
 
 development:
   <<: *default
-  database: anicap_development
+  database: capriccio_development
 
 test:
   <<: *default
-  database: anicap_test
+  database: capriccio_test
 
 production:
   <<: *default
-  database: anicap_production
+  database: capriccio_production

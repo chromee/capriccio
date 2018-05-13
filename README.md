@@ -1,4 +1,4 @@
-anicap2
+Capriccio
 ==============
 
 Requirements
@@ -10,8 +10,8 @@ Development
 -----------
 
 ```bash
-git clone https://github.com/chromee/anicap2
-cd anicap2
+git clone https://github.com/chromee/capriccio
+cd capriccio
 cp .env.dev.example .env.dev
 docker-compose up -d
 docker-compose exec rails rake db:setup
