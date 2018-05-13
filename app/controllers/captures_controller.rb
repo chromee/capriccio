@@ -6,7 +6,7 @@ class CapturesController < ApplicationController
 
   def index
     @captures = Capture.all.order("id desc")
-    case params[:serch_type_id].to_i
+    case params[:search_type_id].to_i
     when SearchType::COMMENT.id
       @captures = @captures.where("comment like ?", "%#{params[:search_text]}%")
     when SearchType::TAG.id

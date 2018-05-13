@@ -17,7 +17,7 @@ div.row
         div.card-header tags
         div.card-body
           - @capture.tag_list.each do |tag|
-            span = link_to tag, captures_path(search: tag), class: "tag btn btn-secondary mr-1"
+            span = link_to tag, captures_path(search_type_id: SearchType::TAG.id, search_text: tag), class: "tag btn btn-secondary mr-1"
 
     div.mt-3
       div.card
