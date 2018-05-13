@@ -18,5 +18,4 @@
 //= require imagesloaded.pkgd.min.js
 //= require infinite-scroll.pkgd.min.js
 //= require masonry.pkgd.min.js
-//= require suggest.js
 //= require_tree .
