@@ -27,8 +27,6 @@ gem "jquery-turbolinks"
 
 # いつも使う
 gem 'devise'
-gem 'cancancan'
-gem 'rolify'
 gem 'annotate'
 gem 'kaminari', '~> 0.17.0'
 gem 'active_hash'
@@ -38,7 +36,6 @@ gem 'acts-as-taggable-on', '~> 5.0'
 
 # 画像系
 gem 'paperclip'
-gem 'ruby-opencv'
 
 # twitter認証
 gem 'twitter'
