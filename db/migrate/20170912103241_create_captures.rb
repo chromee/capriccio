@@ -3,8 +3,6 @@ class CreateCaptures < ActiveRecord::Migration[5.0]
     create_table :captures do |t|
       t.string :name
       t.text :comment
-      t.integer :anime_id
-      t.integer :emotion_id
 
       t.timestamps
     end

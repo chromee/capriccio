@@ -5,8 +5,6 @@
 #  id                   :integer          not null, primary key
 #  name                 :string(255)
 #  comment              :text(65535)
-#  anime_id             :integer
-#  emotion_id           :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  picture_file_name    :string(255)
