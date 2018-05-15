@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
+  'https://github.com/#{repo_name}.git'
 end
 
 gem 'rails', '~> 5.1.3'
@@ -23,7 +23,7 @@ gem 'bootstrap_form'
 gem 'bootstrap_tagsinput_rails'
 # js
 gem 'jquery-rails'
-gem "jquery-turbolinks"
+gem 'jquery-turbolinks'
 
 # いつも使う
 gem 'devise'
@@ -43,7 +43,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'google-api-client', '~> 0.11'
-gem "google-cloud-vision"
+gem 'google-cloud-vision'
+gem 'fog'
 
 group :development, :test do
   gem 'byebug', platform: :mri
