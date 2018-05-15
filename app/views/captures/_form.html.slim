@@ -11,14 +11,15 @@
     .col-10
       = f.text_area :comment, class: "form-control"
 
-  .form-row.mt-3
-    = f.label :picture, class: "col-2 form-label"
-    .col-10
-      = f.file_field :picture, id: "picture", style: "display:none"
-      .input-group
-        input#pictureCoverTextField.form-control type="text" placeholder="select file..."
-        div.input-group-append
-          button#browser-btn.btn.btn-outline-info type="button" Browse
+  - if params[:action] == "new"
+    .form-row.mt-3
+      = f.label :picture, class: "col-2 form-label"
+      .col-10
+        = f.file_field :picture, id: "picture", style: "display:none"
+        .input-group
+          input#pictureCoverTextField.form-control type="text" placeholder="select file..."
+          div.input-group-append
+            button#browser-btn.btn.btn-outline-info type="button" Browse
 
   .form-group.mt-3.text-center
     .cap-image.col-10.offset-2 = capture.picture.present? ? image_tag(capture.picture.url(:large)) : "no Image"
