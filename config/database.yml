@@ -3,7 +3,7 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
-  port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
+  port: <%= ENV.fetch("DATABASE_PORT") { 3306 } %>
   username: <%= ENV.fetch("DATABASE_USER") { "root" } %>
   password: <%= ENV.fetch("DATABASE_PASSWORD") { "password" } %>
 
@@ -17,4 +17,4 @@ test:
 
 production:
   <<: *default
-  database: capriccio_production
+  database: <%= ENV.fetch("DATABASE_NAME") { "capriccio_production" } %>
