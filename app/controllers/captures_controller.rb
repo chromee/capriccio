@@ -71,7 +71,7 @@ class CapturesController < ApplicationController
   end
 
   def favorite
-    @favorite = UserFavoriteCapture.find_or_create_by(user_id: current_user.id, capture_id: @capture.id)
+    @favorite = UserFavoriteCapture.find_or_create_by(user_id: current_user.id, capture_id: @capture.id, favorite: true)
     @favorite.update_attributes(favorite: params[:favorite])
   end
 
