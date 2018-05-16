@@ -14,7 +14,7 @@ class CapturesController < ApplicationController
       @captures = @captures.tagged_with keywords, any: true
     end
     if params[:favorite]
-      @favorites = UserFavoriteCapture.where(user_id: current_user.id)
+      @favorites = UserFavoriteCapture.where(user_id: current_user.id, favorite: true)
       @captures = @captures.where(id: @favorites.map(&:capture_id))
     end
     @captures = @captures.page(params[:page]).per(PER_PAGE)
@@ -71,7 +71,7 @@ class CapturesController < ApplicationController
   end
 
   def favorite
-    @favorite = UserFavoriteCapture.find_or_create_by(user_id: current_user.id, capture_id: @capture.id, favorite: true)
+    @favorite = UserFavoriteCapture.find_or_create_by(user_id: current_user.id, capture_id: @capture.id)
     @favorite.update_attributes(favorite: params[:favorite])
   end
 
