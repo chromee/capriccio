@@ -5,11 +5,6 @@ div.row
         div.grid-item
           = link_to capture_path(capture), class: "pic-link" do
             = image_tag capture.picture.url(:large), class: "picutre"
-        / - if i % 15 == 0
-        /   div.grid-item
-        /     <!-- admax -->
-        /     <script src="//adm.shinobi.jp/s/83692fc62bd72eca9290f5abde319d5a"></script>
-        /     <!-- admax -->
 
     div.page-load-status
       p.infinite-scroll-request.loader-ellips
@@ -23,7 +18,7 @@ div.row
     div.cap-pagination
       = paginate @captures
 
-  nav.col-xl-2.col-3.hidden-xs-down.bg-faded.sidebar
+  nav.col-xl-2.col-3.d-none.d-lg-block.bg-faded.sidebar
     div.ad
       <!-- admax -->
       <script src="//adm.shinobi.jp/s/0a0ee33196f827b9f7caa80396585a9c"></script>
