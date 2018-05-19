@@ -45,7 +45,7 @@ class Capture < ApplicationRecord
 
   def generate_message!
     vision = Google::Cloud::Vision.new project: ENV.fetch("GOOGLE_PROJECT_ID")
-    image = vision.image self.picture.url(:original)
+    image = vision.image self.picture.path
     self.update_attribute(:comment, image.text)
   end
 
