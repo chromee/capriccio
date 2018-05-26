@@ -49,4 +49,8 @@ class Capture < ApplicationRecord
     self.update_attribute(:comment, image.text)
   end
 
+  def picture_url
+    self.picture.url(:large)
+  end
+
 end
