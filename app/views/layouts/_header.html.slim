@@ -1,8 +1,9 @@
-nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dark
+nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark.bg-faded
   = link_to app_name, root_path, class: "navbar-brand"
 
   button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
     span.navbar-toggler-icon
+
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item = link_to "Upload", new_capture_path, class: "nav-link"
@@ -12,6 +13,10 @@ nav.navbar.fixed-top.navbar-expand-lg.justify-content-between.navbar-dark.bg-dar
         li.nav-item = link_to session[:user_name], "https://twitter.com/#{session[:user_nickname]}", class: "nav-link", target: "_blank"
       - else
         li.nav-item = link_to "twitter sign in", user_twitter_omniauth_authorize_path, class: "nav-link"
+
+    div.navbar-collapse.collapse.justify-content-center
+      = image_tag "icon.png", id: "capriccio-icon", class: "nav-item"
+
     = form_tag captures_path, method: :get, class: "form-inline" do
       = select_tag :search_type_id, options_for_select(SearchType.all.map {|search_type| [search_type.name, search_type.id] }, selected: params[:serch_type_id]), class: "form-control mr-sm-2"
       = search_field_tag :search_text, params[:search_text], class: "form-control mr-sm-2"
