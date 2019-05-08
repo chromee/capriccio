@@ -15,6 +15,9 @@ RUN wget https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VERS
     && chmod +x /bin/entrykit \
     && entrykit --symlink
 
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs
+
 RUN mkdir /app
 WORKDIR /app
 RUN bundle config build.nokogiri --use-system-libraries

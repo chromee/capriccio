@@ -22,17 +22,17 @@ class Capture < ApplicationRecord
     path: "#{Rails.root}/public/pictures/captures/:id/:style/:basename.:extension",
   }
 
-  if Rails.env.production?
-    paperclip_options.merge!(
-      storage: :fog,
-      fog_directory: ENV.fetch("GCS_BUCKET_NAME"),
-      fog_credentials: {
-        provider: "Google",
-        google_storage_access_key_id: ENV.fetch("GCS_ACCESS_KEY"),
-        google_storage_secret_access_key: ENV.fetch("GCS_SECRET_KEY"),
-      }
-    )
-  end
+  # if Rails.env.production?
+  #   paperclip_options.merge!(
+  #     storage: :fog,
+  #     fog_directory: ENV.fetch("GCS_BUCKET_NAME"),
+  #     fog_credentials: {
+  #       provider: "Google",
+  #       google_storage_access_key_id: ENV.fetch("GCS_ACCESS_KEY"),
+  #       google_storage_secret_access_key: ENV.fetch("GCS_SECRET_KEY"),
+  #     }
+  #   )
+  # end
 
   has_attached_file :picture, paperclip_options
 
