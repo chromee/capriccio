@@ -18,7 +18,7 @@ gem 'slim'
 gem 'slim-rails'
 # css
 gem 'sass-globbing'
-gem 'bootstrap', '~> 4.1.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form'
 gem 'bootstrap_tagsinput_rails'
 # js
@@ -26,7 +26,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 
 # いつも使う
-gem 'devise'
+gem 'devise', ">= 4.6.0"
 gem 'annotate'
 gem 'kaminari', '~> 0.17.0'
 gem 'active_hash'
