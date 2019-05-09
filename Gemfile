@@ -43,8 +43,11 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'google-api-client', '~> 0.11'
-gem 'google-cloud-vision'
-gem 'fog'
+gem 'google-cloud-vision', '~> 0.28.0'
+gem 'fog', '~> 2.0.0'
+
+gem "actionview", ">= 5.1.6.2"
+gem "activejob", ">= 5.1.6.1"
 
 group :development, :test do
   gem 'byebug', platform: :mri
