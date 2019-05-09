@@ -21,7 +21,6 @@
 .byebug_history
 
 .env
-.env.dev
 .key.json
 .DS_Store
 
