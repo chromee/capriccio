@@ -4,13 +4,16 @@
 #
 #  id                   :integer          not null, primary key
 #  name                 :string(255)
-#  comment              :text(65535)
+#  comment              :text(16777215)
+#  anime_id             :integer
+#  emotion_id           :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  picture_file_name    :string(255)
 #  picture_content_type :string(255)
 #  picture_file_size    :integer
 #  picture_updated_at   :datetime
+#  posted_user_id       :integer
 #
 
 class Capture < ApplicationRecord

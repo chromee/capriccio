@@ -81,7 +81,8 @@ class CapturesController < ApplicationController
     end
 
     def capture_params
-      params.require(:capture).permit(:name, :comment, :picture, :tag_list, :anime_id)
+      params[:capture][:posted_user_id] = current_user.id if user_signed_in?
+      params.require(:capture).permit(:name, :comment, :picture, :tag_list, :anime_id, :posted_user_id)
     end
 
 end
