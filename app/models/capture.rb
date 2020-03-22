@@ -56,4 +56,7 @@ class Capture < ApplicationRecord
     self.picture.url(:large)
   end
 
+  def picture_from_url(url)
+    self.picture = open(url)
+  end
 end

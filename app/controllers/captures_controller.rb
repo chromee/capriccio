@@ -33,6 +33,7 @@ class CapturesController < ApplicationController
 
   def create
     @capture = Capture.new(capture_params)
+    @capture.picture_from_url(params[:capture][:picture_url]) if params[:capture][:picture].nil? && params[:capture][:picture_url].present?
     respond_to do |format|
       if @capture.save
         @capture.generate_message! if capture_params[:comment].blank? && @capture.picture.content_type != "image/gif"
