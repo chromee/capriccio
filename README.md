@@ -19,6 +19,13 @@ docker-compose exec rails rake db:setup
 # Open http://localhost:3000 on browser!
 ```
 
+Dev
+-----------
+```
+ docker-compose run --service-ports rails
+```
+
+
 Memo
 -----------
 
