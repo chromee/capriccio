@@ -15,11 +15,13 @@
     .form-row.mt-3
       = f.label :picture, class: "col-2 form-label"
       .col-5
-        = f.text_field :picture_url, value: "", class: "form-control"
-      .col-5
+        = f.text_field :picture_url, value: "", class: "form-control", placeholder: "image URL"
+      .col-1
+        div class="text-center mt-2" or
+      .col-4
         = f.file_field :picture, id: "picture", style: "display:none"
         .input-group
-          input#pictureCoverTextField.form-control type="text" placeholder="select file..."
+          input#pictureCoverTextField.form-control type="text" placeholder="select file"
           div.input-group-append
             button#browser-btn.btn.btn-outline-info type="button" Browse
 
