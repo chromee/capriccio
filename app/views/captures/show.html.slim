@@ -1,5 +1,5 @@
 div.row
-  div.col-xl-9.col-lg-12.text-center
+  div.col-xl-9.col-md-8.text-center
     = link_to image_tag(@capture.picture.url(:large), id: "show-picture") , @capture.picture.url(:original), target: ["_blank"]
     javascript:
       var picture = document.getElementById( "show-picture" );
@@ -10,7 +10,7 @@ div.row
         picture.id = "vertical-picture";
       }
 
-  div.col-xl-3.col-lg-12
+  div.col-xl-3.col-md-4
 
     div.mt-3
       div.card
@@ -23,6 +23,10 @@ div.row
       div.card
         div.card-header comment
         div.card-body = @capture.comment
+        
+    .row.mt-3
+      .col-12
+        button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
 
     - if user_signed_in?
       .row.mt-3
@@ -44,6 +48,8 @@ div.row
     /   <!-- admax -->
     /   <script src="//adm.shinobi.jp/s/4c9129721ab976fcb0b9d0fb83bb07c3"></script>
     /   <!-- admax -->
+
+/ ==================== modal
 
   div.modal.fade#tweetModal tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true"
     div.modal-dialog.modal-dialog-centered role="document"
