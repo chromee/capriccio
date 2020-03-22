@@ -22,6 +22,8 @@ class CapturesController < ApplicationController
 
   def show
     @favorite = UserFavoriteCapture.all.where(user_id: current_user.id, capture_id: @capture.id).first&.favorite if user_signed_in?
+    @image_url = request.base_url + @capture.picture.url(:original)
+    @current_url = request.base_url + capture_path(@capture)
   end
 
   def new

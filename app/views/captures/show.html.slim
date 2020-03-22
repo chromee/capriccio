@@ -90,3 +90,11 @@ div.row
           button.close type="button" data-dismiss="modal" aria-label="Close"
             span aria-hidden="true" &times;
         div.modal-body#replysModalBody
+
+/ ==================== twitter card
+
+= content_for :additional_meta do
+  meta name="twitter:card" content="summary_large_image"
+  meta property="og:url" content=@current_url
+  meta property="og:description" content=@capture.comment
+  meta name="og:image" content=@image_url

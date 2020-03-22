@@ -4,7 +4,7 @@ html lang="ja"
     title = full_title(yield(:title))
     = favicon_link_tag("favicon.ico")
 
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    / <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     javascript:
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-5736713726533693",
@@ -12,10 +12,13 @@ html lang="ja"
       });
 
     meta name="viewport" content="width=device-width"
+    = yield :additional_meta
+
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/shim'
+
   body
     = render 'layouts/header'
     #warp
