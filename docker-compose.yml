@@ -10,6 +10,7 @@ services:
       - "./.env"
     volumes:
       - ".:/app"
+      - cache:/cache
     volumes_from:
       - data
     ports:
@@ -37,4 +38,6 @@ volumes:
   db:
     driver: local
   bundle:
+    driver: local
+  cache:
     driver: local
