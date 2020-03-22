@@ -1,5 +1,5 @@
 div.row
-  div.col-xl-10.col-9
+  div.col-12
     div#grid
       - @captures.each_with_index do |capture, i|
         div.grid-item
@@ -18,8 +18,8 @@ div.row
     div.cap-pagination
       = paginate @captures
 
-  nav.col-xl-2.col-3.d-none.d-lg-block.bg-faded.sidebar
-    div.ad
-      <!-- admax -->
-      <script src="//adm.shinobi.jp/s/0a0ee33196f827b9f7caa80396585a9c"></script>
-      <!-- admax -->
+  / nav.col-xl-2.col-3.d-none.d-lg-block.bg-faded.sidebar
+  /   div.ad
+  /     <!-- admax -->
+  /     <script src="//adm.shinobi.jp/s/0a0ee33196f827b9f7caa80396585a9c"></script>
+  /     <!-- admax -->
