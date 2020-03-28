@@ -39,6 +39,7 @@ class Capture < ApplicationRecord
 
   has_attached_file :picture, paperclip_options
 
+  validates  :picture, presence: true
   validates_attachment :picture,
     less_than: 20.megabytes,
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
