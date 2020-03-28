@@ -23,73 +23,16 @@ div.row
       div.card
         div.card-header comment
         div.card-body = @capture.comment
-        
+
     .row.mt-3
       .col-12
-        button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
+        button.col-12.btn.btn-primary.btn-lg.btn-block#copy-button type="button" copy link
 
-    - if user_signed_in?
+    - if user_signed_in? || is_development
       .row.mt-3
         .col-4 = link_to "edit", edit_capture_path(@capture), class: "btn btn-info btn-lg btn-block"
-        .col-4 = link_to "delete", @capture, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-lg btn-block" if @capture.posted_user_id == current_user.id
+        .col-4 = link_to "delete", @capture, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-lg btn-block" if is_development || @capture.posted_user_id == current_user.id
         .col-4 = link_to @favorite ? "😍" : "😑", favorite_capture_path(@capture, favorite: !@favorite), method: :post, remote: true, class: "btn btn-outline-light btn-lg btn-block", id: "favorite-btn"
-
-      .row.mt-3
-        .col-12
-          button.col-12.btn.btn-primary.btn-lg.btn-block type="button" data-toggle="modal" data-target="#tweetModal" tweet with text
-
-      .row.mt-3
-        .col-6
-          = link_to "time line", timeline_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
-        .col-6
-          = link_to "reply", replys_twitter_index_path(capture_id: @capture.id), remote: true, class: "btn btn-info btn-lg btn-block"
-
-    / div.mt-5.pt-5.text-center
-    /   <!-- admax -->
-    /   <script src="//adm.shinobi.jp/s/4c9129721ab976fcb0b9d0fb83bb07c3"></script>
-    /   <!-- admax -->
-
-/ ==================== modal
-
-  div.modal.fade#tweetModal tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true"
-    div.modal-dialog.modal-dialog-centered role="document"
-      div.modal-content
-        div.modal-header
-          h5.modal-title#tweetModalLabel tweet with cap
-          button.close type="button" data-dismiss="modal" aria-label="Close"
-            span aria-hidden="true" &times;
-        div.modal-body
-          = form_tag tweet_twitter_index_path, remote: true do
-            = hidden_field_tag :capture_id, @capture.id
-            = text_area_tag :tweet_body, "", class: "form-control"
-            = submit_tag "tweet", class: "btn btn-primary btn-lg btn-block mt-3"
-
-  div.modal.fade#successModal tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true"
-    div.modal-dialog.modal-dialog-centered role="document"
-      div.modal-content
-        div.modal-header
-          h5.modal-title#successModalLabel tweet success
-          button.close type="button" data-dismiss="modal" aria-label="Close"
-            span aria-hidden="true" &times;
-        div.modal-body#successModalBody
-
-  div.modal.fade#timelineModal tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true"
-    div.modal-dialog.modal-dialog-centered role="document"
-      div.modal-content
-        div.modal-header
-          h5.modal-title#timelineModalLabel time line
-          button.close type="button" data-dismiss="modal" aria-label="Close"
-            span aria-hidden="true" &times;
-        div.modal-body#timelineModalBody
-
-  div.modal.fade#replysModal tabindex="-1" role="dialog" aria-labelledby="replysModalLabel" aria-hidden="true"
-    div.modal-dialog.modal-dialog-centered role="document"
-      div.modal-content
-        div.modal-header
-          h5.modal-title#replysModalLabel replys to you
-          button.close type="button" data-dismiss="modal" aria-label="Close"
-            span aria-hidden="true" &times;
-        div.modal-body#replysModalBody
 
 / ==================== twitter card
 
@@ -99,3 +42,11 @@ div.row
   meta property="og:url" content=@current_url
   meta property="og:description" content=@capture.comment
   meta property="og:image" content=@image_url
+
+javascript:
+  $(function() {
+    let copyBtn = document.getElementById("copy-button");
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText("#{@current_url}");
+    };
+  });
