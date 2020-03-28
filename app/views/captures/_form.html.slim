@@ -2,26 +2,29 @@
   = render partial: "common/errors", locals: {form: capture}
 
   .form-row.mt-3
-    = f.label :tag_list, "tags", class: "col-2 form-label"
+    .col-2
+      = f.label :tag_list, "tags", class: "form-label"
     .col-10
       = text_field_tag 'capture[tag_list]', capture.tag_list.join(', '), "data-role" => "tagsinput", class: "form-control"
 
   .form-row.mt-3
-    = f.label :comment, class: "col-2 form-label"
+    .col-2
+      = f.label :comment, class: "form-label"
     .col-10
       = f.text_area :comment, class: "form-control"
 
-  - if params[:action] == "new"
+  - if ["new", "create"].any?(params[:action])
     .form-row.mt-3
-      = f.label :picture, class: "col-2 form-label"
-      .col-5
+      .col-2
+        = f.label :picture, class: "form-label"
+      .col-4
         = f.text_field :picture_url, value: "", class: "form-control", placeholder: "image URL"
       .col-1
         div class="text-center mt-2" or
-      .col-4
+      .col-5
         = f.file_field :picture, id: "picture", style: "display:none"
         .input-group
-          input#pictureCoverTextField.form-control type="text" placeholder="select file"
+          input#pictureCoverTextField.form-control type="text" placeholder="select file or paste"
           div.input-group-append
             button#browser-btn.btn.btn-outline-info type="button" Browse
 
@@ -39,4 +42,19 @@ javascript:
     // 画像読み込み処理
     fileRead();
 
+    const fileInput = document.getElementById("picture");
+    window.addEventListener('paste', e => {
+      fileInput.files = e.clipboardData.files;
+    });
+
+    window.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.dataTransfer.dropEffect = 'link';
+    });
+    window.addEventListener('drop', e => {
+      e.preventDefault();
+      fileInput.files = e.dataTransfer.files;
+      showFile(e.dataTransfer.files[0])
+    });
   });
