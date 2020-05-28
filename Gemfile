@@ -28,7 +28,7 @@ gem 'jquery-turbolinks'
 # いつも使う
 gem 'devise', ">= 4.6.0"
 gem 'annotate'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 gem 'active_hash'
 
 # たまに使う
